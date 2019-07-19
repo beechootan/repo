@@ -1,14 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Clinic</title>
-  <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Dell In-House Doctor Appoinment System</title>
 </head>
 <body>
   <app-root></app-root>
+  <div id="header">
+    <img src="http://www.gigya.com/wp-content/uploads/2015/04/dell_logo-white.svg"/>
+    <h1>Dell In-House Doctor Appoinment System</h1>
+  </div>
+  <div id="note">
+    <p><h1>Doctor Available Time</h1></p>
+    <p>Monday   : 09:00 AM - 12:00 PM</p>
+    <p>Tuesday  : Off</p>
+    <p>Wednesday: 09:00 AM - 12:00 PM</p>
+    <p>Thursday : 02:00 PM - 04:00 PM</p>
+    <p>Friday   : Off</p>
+    <p><h1>Doctor's Information</h1></p>
+    <p>from ASP Medical Center</p>
+    </div>
+    <div id="container">
+        <p><h1>Doctor Is </h1></p>
+        <td>{{doctor.IsDoctorIn}}</td>
+    </div>
+    <div id="container">
+      <p><h1>Doctor Is </h1></p>
+      <td>{{doctor.IsAvailableFlag}}</td>
+  </div>      
+  <div id="tokenbox">
+    <p><h1>Current Number</h1></p>
+    <td>{{doctor.IsAvailableFlag}}</td>
+    </div>
+    <div id="tokenbox">
+      <p><h1>Your Token Is</h1></p>
+      <td>{{doctor.IsAvailableFlag}}</td>
+    </div>
+    <div id="buttoncontainer">
+      <a class="button" href="#">Make Appointment</a>
+      <a class="button" href="#">Manage Appoinments</a>
+    </div>
+
 </body>
 </html>
