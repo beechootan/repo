@@ -5,7 +5,7 @@ import { Employee } from "./Employee";
 export class Appointment {
 
     @PrimaryGeneratedColumn()
-    id: String;
+    id: number;
 
 
     @Column()
@@ -23,8 +23,8 @@ export class Appointment {
     @Column({nullable : true})
     symptom: String;
 
-    @Column()
-    cancel: boolean;
+    @Column({default: 'Open'})
+    status: String;
 
     @Column()
     isToday: boolean;

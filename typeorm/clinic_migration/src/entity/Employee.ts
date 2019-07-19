@@ -8,7 +8,7 @@ export class Employee {
     id: number;
 
     @Column()
-    employeeId: number;
+    badgeNumber: number;
 
     @Column()
     employeeName: String;
