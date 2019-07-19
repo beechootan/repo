@@ -27,4 +27,40 @@ public class Employee {
   @OneToMany(mappedBy = "employee")
   private Set<Employee> employees;
 
+  public Long getId() {
+    return this.id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getEmployeeName() {
+    return this.employeeName;
+  }
+
+  public void setEmployeeName(String employeeName) {
+    this.employeeName = employeeName;
+  }
+
+  public boolean isIsNurse() {
+    return this.isNurse;
+  }
+
+  public boolean getIsNurse() {
+    return this.isNurse;
+  }
+
+  public void setIsNurse(boolean isNurse) {
+    this.isNurse = isNurse;
+  }
+
+  public Set<Employee> getEmployees() {
+    return this.employees;
+  }
+
+  public void setEmployees(Set<Employee> employees) {
+    this.employees = employees;
+  }
+
 }

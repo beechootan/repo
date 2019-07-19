@@ -19,4 +19,24 @@ public class DoctorStatus {
   @Column(name = "status")
   private boolean status;
 
+  public Long getId() {
+    return this.id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public boolean isStatus() {
+    return this.status;
+  }
+
+  public boolean getStatus() {
+    return this.status;
+  }
+
+  public void setStatus(boolean status) {
+    this.status = status;
+  }
+
 }
