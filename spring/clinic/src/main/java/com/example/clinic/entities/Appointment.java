@@ -35,14 +35,14 @@ public class Appointment {
   @Column(name = "symptom")
   private String symptom;
 
-  @Column(name = "cancel")
-  private Boolean cancel;
-
   @Column(name = "isToday")
   private Boolean isToday;
 
   @Column(name = "lastUpdBy")
   private int lastUpdBy;
+
+  @Column(name = "status")
+  private String status;
 
   @ManyToOne
   @JoinColumn(name = "employeeId")
@@ -88,18 +88,6 @@ public class Appointment {
     this.symptom = symptom;
   }
 
-  public Boolean isCancel() {
-    return this.cancel;
-  }
-
-  public Boolean getCancel() {
-    return this.cancel;
-  }
-
-  public void setCancel(Boolean cancel) {
-    this.cancel = cancel;
-  }
-
   public Boolean isIsToday() {
     return this.isToday;
   }
@@ -118,6 +106,14 @@ public class Appointment {
 
   public void setLastUpdBy(int lastUpdBy) {
     this.lastUpdBy = lastUpdBy;
+  }
+
+  public String getStatus() {
+    return this.status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
   public Employee getEmployee() {

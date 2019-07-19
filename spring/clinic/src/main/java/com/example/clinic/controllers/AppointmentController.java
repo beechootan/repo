@@ -33,7 +33,8 @@ public class AppointmentController {
 
   @GetMapping(value = "/appointments/currentQueue", produces = "application/json")
   public List<Appointment> displayCurrentAppointments() {
-    return appointmentRepository.findCurrentQueue();
+    String status = "In Progress";
+    return appointmentRepository.findAllByStatus(status);
   }
 
   @PostMapping(value = "/appointments/{employeeName}")
