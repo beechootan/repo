@@ -24,10 +24,9 @@ public class AppointmentController {
     return appointmentRepository.findAll();
   }
 
-  @GetMapping(value = "/firstpage", produces = "application/json")
-  public Appointment findFirstPage(){
-    Boolean status = doctorStatus.findbyID();
-    
+  @GetMapping(value = "/appointments/currentQueue", produces = "application/json")
+  public Appointment displayCurrentAppointments() {
+    return appointmentRepository.findCurrentQueue();
   }
-  }
+
 }

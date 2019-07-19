@@ -1,7 +1,12 @@
 package com.example.clinic.entities;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -12,8 +17,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  */
 @Entity(name = "appointment")
 public class Appointment {
-  @Column(name = "id")
-  private String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
   @Column(name = "queueNum")
   private int queueNum;
@@ -22,10 +28,10 @@ public class Appointment {
   private int employeeId;
 
   @Column(name = "checkInTime")
-  private String checkInTime;
+  private Date checkInTime;
 
   @Column(name = "checkOutTime")
-  private String checOutTime;
+  private Date checOutTime;
 
   @Column(name = "symptom")
   private String symptom;
@@ -44,11 +50,11 @@ public class Appointment {
   @JoinColumn(name = "employeeId")
   private Employee employee;
 
-  public String getId() {
+  public Long getId() {
     return this.id;
   }
 
-  public void setId(String id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -68,19 +74,19 @@ public class Appointment {
     this.employeeId = employeeId;
   }
 
-  public String getCheckInTime() {
+  public Date getCheckInTime() {
     return this.checkInTime;
   }
 
-  public void setCheckInTime(String checkInTime) {
+  public void setCheckInTime(Date checkInTime) {
     this.checkInTime = checkInTime;
   }
 
-  public String getChecOutTime() {
+  public Date getChecOutTime() {
     return this.checOutTime;
   }
 
-  public void setChecOutTime(String checOutTime) {
+  public void setChecOutTime(Date checOutTime) {
     this.checOutTime = checOutTime;
   }
 

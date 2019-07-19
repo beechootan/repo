@@ -4,9 +4,13 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import org.springframework.data.annotation.Id;
 
 /**
  * Employee
@@ -14,8 +18,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity(name = "employees")
 public class Employee {
 
-  @Column(name = "id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @Column(name = "employeeId")
+  private int employeeId;
 
   @Column(name = "employeeName")
   private String employeeName;
@@ -25,7 +33,7 @@ public class Employee {
 
   @JsonManagedReference
   @OneToMany(mappedBy = "employee")
-  private Set<Employee> employees;
+  private Set<Appointment> appointments;
 
   public Long getId() {
     return this.id;
@@ -33,6 +41,14 @@ public class Employee {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public int getEmployeeId() {
+    return this.employeeId;
+  }
+
+  public void setEmployeeId(int employeeId) {
+    this.employeeId = employeeId;
   }
 
   public String getEmployeeName() {
@@ -55,12 +71,12 @@ public class Employee {
     this.isNurse = isNurse;
   }
 
-  public Set<Employee> getEmployees() {
-    return this.employees;
+  public Set<Appointment> getAppointments() {
+    return this.appointments;
   }
 
-  public void setEmployees(Set<Employee> employees) {
-    this.employees = employees;
+  public void setAppointments(Set<Appointment> appointments) {
+    this.appointments = appointments;
   }
 
 }
