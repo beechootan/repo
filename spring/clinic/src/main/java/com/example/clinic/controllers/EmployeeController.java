@@ -23,7 +23,7 @@ public class EmployeeController {
   AppointmentRepository appointmentRepository;
 
   @GetMapping(value = "/appointments/{name}", produces = "application/json")
-  public Employee findAppointment(@PathVariable String name) {
+  public Employee findCurrentAppointment(@PathVariable String name) {
     return employeeRepository.findByEmployeeName(name);
   }
 

@@ -28,28 +28,16 @@ public class AppointmentController {
 
   @GetMapping(value = "/appointments", produces = "application/json")
   public List<Appointment> displayAppointments() {
-    return appointmentRepository.findAll();
+    return appointmentRepository.findAllByIsToday(true);
   }
 
   @GetMapping(value = "/appointments/currentQueue", produces = "application/json")
-  public Integer displayCurrentAppointments() {
-    // Integer currentQueue =
-    // appointmentRepository.findCurrentQueue().getQueueNum();
-    // if (currentQueue != null) {
-    // return currentQueue;
-    // } else {
-    // return 0;
-    // }
-    return 0;
-
+  public List<Appointment> displayCurrentAppointments() {
+    return appointmentRepository.findCurrentQueue();
   }
 
   @PostMapping(value = "/appointments/{employeeName}")
-  public void updateAppointment(@RequestBody Appointment appointment,
-      @PathVariable("employeeName") String employeeName) {
-    // Integer employeeId =
-    // employeeRepository.findByEmployeeName(employeeName).getEmployeeId();
-    // appointment.setEmployeeId(employeeId);
+  public void addAppointment(@RequestBody Appointment appointment, @PathVariable("employeeName") String employeeName) {
 
     Appointment latestAppointment = appointmentRepository.findAll().get(0);
     if (latestAppointment != null) {
