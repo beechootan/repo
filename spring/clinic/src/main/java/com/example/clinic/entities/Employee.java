@@ -9,8 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 /**
  * Employee

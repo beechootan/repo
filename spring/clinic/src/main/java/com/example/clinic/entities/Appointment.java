@@ -24,9 +24,6 @@ public class Appointment {
   @Column(name = "queueNum")
   private int queueNum;
 
-  @Column(name = "employeeId")
-  private int employeeId;
-
   @Column(name = "checkInTime")
   private Date checkInTime;
 
@@ -64,14 +61,6 @@ public class Appointment {
 
   public void setQueueNum(int queueNum) {
     this.queueNum = queueNum;
-  }
-
-  public int getEmployeeId() {
-    return this.employeeId;
-  }
-
-  public void setEmployeeId(int employeeId) {
-    this.employeeId = employeeId;
   }
 
   public Date getCheckInTime() {
