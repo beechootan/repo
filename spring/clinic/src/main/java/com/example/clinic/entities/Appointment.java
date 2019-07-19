@@ -10,11 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * Appointment
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity(name = "appointment")
 public class Appointment {
   @Id
@@ -23,9 +25,6 @@ public class Appointment {
 
   @Column(name = "queueNum")
   private int queueNum;
-
-  @Column(name = "employeeId")
-  private int employeeId;
 
   @Column(name = "checkInTime")
   private Date checkInTime;
@@ -36,16 +35,15 @@ public class Appointment {
   @Column(name = "symptom")
   private String symptom;
 
-  @Column(name = "cancel")
-  private Boolean cancel;
-
   @Column(name = "isToday")
   private Boolean isToday;
 
   @Column(name = "lastUpdBy")
   private int lastUpdBy;
 
-  @JsonBackReference
+  @Column(name = "status")
+  private String status;
+
   @ManyToOne
   @JoinColumn(name = "employeeId")
   private Employee employee;
@@ -64,14 +62,6 @@ public class Appointment {
 
   public void setQueueNum(int queueNum) {
     this.queueNum = queueNum;
-  }
-
-  public int getEmployeeId() {
-    return this.employeeId;
-  }
-
-  public void setEmployeeId(int employeeId) {
-    this.employeeId = employeeId;
   }
 
   public Date getCheckInTime() {
@@ -98,18 +88,6 @@ public class Appointment {
     this.symptom = symptom;
   }
 
-  public Boolean isCancel() {
-    return this.cancel;
-  }
-
-  public Boolean getCancel() {
-    return this.cancel;
-  }
-
-  public void setCancel(Boolean cancel) {
-    this.cancel = cancel;
-  }
-
   public Boolean isIsToday() {
     return this.isToday;
   }
@@ -128,6 +106,14 @@ public class Appointment {
 
   public void setLastUpdBy(int lastUpdBy) {
     this.lastUpdBy = lastUpdBy;
+  }
+
+  public String getStatus() {
+    return this.status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
   public Employee getEmployee() {
