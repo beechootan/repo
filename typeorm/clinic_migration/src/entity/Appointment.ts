@@ -5,7 +5,7 @@ import { Employee } from "./Employee";
 export class Appointment {
 
     @PrimaryGeneratedColumn()
-    id: String;
+    id: number;
 
 
     @Column()
@@ -14,23 +14,25 @@ export class Appointment {
     @Column()
     employeeId: number;
 
-    @Column('datetime')
+    @Column({nullable : true, type: 'datetime'})
     checkInTime: Date;
 
-    @Column('datetime')
+    @Column({nullable : true, type: 'datetime'})
     checkOutTime: Date;
 
-    @Column()
+    @Column({nullable : true})
     symptom: String;
 
-    @Column()
-    cancel: boolean;
+    @Column({default: 'Open'})
+    status: String;
 
     @Column()
     isToday: boolean;
 
     @Column()
     lastUpdBy: number;
+
+
 
     @ManyToOne(type => Employee, employee => employee.appointment)
     @JoinColumn({name: "employeeId"})
