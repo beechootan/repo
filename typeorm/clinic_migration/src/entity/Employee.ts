@@ -8,7 +8,10 @@ export class Employee {
     id: number;
 
     @Column()
-    emplyoyeeName: String;
+    employeeId: number;
+
+    @Column()
+    employeeName: String;
 
     @Column()
     isNurse: boolean;
