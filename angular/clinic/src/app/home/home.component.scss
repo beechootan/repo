@@ -1,0 +1,108 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+#header {
+    padding: 60px;
+    text-align: center;
+    background: #4e5157;
+    background: -webkit-gradient(linear, left top, left bottom, from(#656a6b), to(#25768f));
+    color: white;
+    font-size: 15px;
+  }
+
+#header img {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #555;
+  }
+
+#note {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    -webkit-column-gap: 10px;
+    -moz-column-gap: 10px;
+    column-gap: 10px;
+    -webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+    -moz-column-rule: 1px solid rgba(28,110,164,0.5);
+    column-rule: 1px solid transparent;
+    float: left;
+    width: 40%;
+    margin-left: 20px;
+    
+    }
+
+#container {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+        -webkit-column-gap: 10px;
+        -moz-column-gap: 10px;
+        column-gap: 10px;
+        -webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+        -moz-column-rule: 1px solid rgba(28,110,164,0.5);
+        column-rule: 3px solid black;
+        float: center;
+        margin-left: 20%;
+        margin-right: 20%;
+        width: 20%;
+        margin-top: 1%;
+        margin-left: 20px;
+        -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+        box-shadow: 5px 5px 15px 5px #000000;
+        background:
+        #747578;
+        }
+  
+ #tokenbox {
+          border: 5px groove #1C6EA4;
+          border-radius: 20px 20px 20px 20px;
+          float: left;
+          width: 20%;
+          margin-top: 1%;
+          margin-left: 20px;
+}
+
+#buttoncontainer {
+  float: left;
+  width: 40%;
+  margin-top: 10%;
+  margin-left: 20px;}
+
+.button {
+  display: inline-block;
+  margin:10px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 14px 24px;
+  border: 1px solid #25768f;
+  border-radius: 8px;
+  background: #3cc0e9;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3cc0e9), to(#25768f));
+  background: -moz-linear-gradient(top, #3cc0e9, #25768f);
+  background: linear-gradient(to bottom, #3cc0e9, #25768f);
+  -webkit-box-shadow: #37b2d7 0px 0px 40px 0px;
+  -moz-box-shadow: #37b2d7 0px 0px 40px 0px;
+  box-shadow: #37b2d7 0px 0px 40px 0px;
+  text-shadow: #174a5a 1px 1px 1px;
+  font: normal normal bold 20px arial;
+  color: #ffffff;
+  text-decoration: none;
+}
+.button:hover,
+.button:focus {
+  border: 1px solid #2e94b3;
+  background: #48e6ff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#48e6ff), to(#2c8eac));
+  background: -moz-linear-gradient(top, #48e6ff, #2c8eac);
+  background: linear-gradient(to bottom, #48e6ff, #2c8eac);
+  color: #ffffff;
+  text-decoration: none;
+}
+.button:active {
+  background: #25768f;
+  background: -webkit-gradient(linear, left top, left bottom, from(#25768f), to(#25768f));
+  background: -moz-linear-gradient(top, #25768f, #25768f);
+  background: linear-gradient(to bottom, #25768f, #25768f);
+}
