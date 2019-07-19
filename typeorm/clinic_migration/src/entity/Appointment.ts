@@ -14,13 +14,13 @@ export class Appointment {
     @Column()
     employeeId: number;
 
-    @Column('datetime')
+    @Column({nullable : true, type: 'datetime'})
     checkInTime: Date;
 
-    @Column('datetime')
+    @Column({nullable : true, type: 'datetime'})
     checkOutTime: Date;
 
-    @Column()
+    @Column({nullable : true})
     symptom: String;
 
     @Column()
@@ -31,6 +31,8 @@ export class Appointment {
 
     @Column()
     lastUpdBy: number;
+
+
 
     @ManyToOne(type => Employee, employee => employee.appointment)
     @JoinColumn({name: "employeeId"})
