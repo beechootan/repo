@@ -28,13 +28,24 @@ public class AppointmentController {
 
   @GetMapping(value = "/appointments", produces = "application/json")
   public List<Appointment> displayAppointments() {
-    return appointmentRepository.findAllByIsToday(true);
+    // return appointmentRepository.findAllByIsToday(true);
+    return appointmentRepository.findAll();
+  }
+
+  @GetMapping(value = "/appointments/{name}/today", produces = "application/json")
+  public Appointment findTodayAppointmentByEmployee(@PathVariable String name) {
+    return appointmentRepository.findCurrentAppointmentByEmployeeName(name);
   }
 
   @GetMapping(value = "/appointments/currentQueue", produces = "application/json")
-  public List<Appointment> displayCurrentAppointments() {
+  public Appointment displayCurrentAppointments() {
     String status = "In Progress";
-    return appointmentRepository.findAllByStatus(status);
+    return appointmentRepository.findByStatus(status);
+  }
+
+  @GetMapping(value = "/appointments/totalQueue", produces = "application/json")
+  public Appointment displayTotalAppointments() {
+    return appointmentRepository.findByIsToday();
   }
 
   @PostMapping(value = "/appointments/{employeeName}")

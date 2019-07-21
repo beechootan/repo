@@ -25,8 +25,8 @@ public class Employee {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "employeeId")
-  private int employeeId;
+  @Column(name = "badgeNumber")
+  private int badgeNumber;
 
   @Column(name = "employeeName")
   private String employeeName;
@@ -46,12 +46,12 @@ public class Employee {
     this.id = id;
   }
 
-  public int getEmployeeId() {
-    return this.employeeId;
+  public int getBadgeNumber() {
+    return this.badgeNumber;
   }
 
-  public void setEmployeeId(int employeeId) {
-    this.employeeId = employeeId;
+  public void setBadgeNumber(int badgeNumber) {
+    this.badgeNumber = badgeNumber;
   }
 
   public String getEmployeeName() {

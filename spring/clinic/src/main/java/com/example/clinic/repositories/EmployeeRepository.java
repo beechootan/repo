@@ -12,6 +12,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
   // a.cancel = 0 and a.isToday = 1 and e.employeeName = ?1; ", nativeQuery =
   // true)
   Employee findByEmployeeName(String employeeName);
-  // Appointment findCurrentAppointment(id);
 
 }
