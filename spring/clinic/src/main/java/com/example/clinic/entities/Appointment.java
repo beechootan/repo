@@ -39,7 +39,7 @@ public class Appointment {
   private Boolean isToday;
 
   @Column(name = "lastUpdBy")
-  private int lastUpdBy;
+  private Long lastUpdBy;
 
   @Column(name = "status")
   private String status;
@@ -100,11 +100,11 @@ public class Appointment {
     this.isToday = isToday;
   }
 
-  public int getLastUpdBy() {
+  public long getLastUpdBy() {
     return this.lastUpdBy;
   }
 
-  public void setLastUpdBy(int lastUpdBy) {
+  public void setLastUpdBy(long lastUpdBy) {
     this.lastUpdBy = lastUpdBy;
   }
 

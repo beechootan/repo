@@ -51,20 +51,26 @@ public class AppointmentController {
   @PostMapping(value = "/appointments/{employeeName}")
   public void addAppointment(@RequestBody Appointment appointment, @PathVariable("employeeName") String employeeName) {
 
-    Appointment latestAppointment = appointmentRepository.findAll().get(0);
-    if (latestAppointment != null) {
-      Integer maxQueue = latestAppointment.getQueueNum();
-      System.out.println("========================");
-      System.out.println(maxQueue);
+    Appointment latestAppointment = appointmentRepository.findCurrentAppointmentByEmployeeName(employeeName);
+    Integer maxQueue = appointmentRepository.findByIsToday().getQueueNum();
+    if (maxQueue != null) {
+      maxQueue = maxQueue + 1;
+    } else {
+      maxQueue = 1;
     }
+    ;
+    if (latestAppointment != null) {
 
-    // if (maxQueue != null) {
-    // appointment.setQueueNum(maxQueue + 1);
-    // } else {
-    // appointment.setQueueNum(1);
-    // }
-
-    appointmentRepository.save(appointment);
+    } else {
+      latestAppointment.setQueueNum(maxQueue);
+      latestAppointment.setEmployee(employeeRepository.findByEmployeeName(employeeName));
+      latestAppointment.setSymptom(appointment.getSymptom());
+      latestAppointment.setStatus("Open");
+      latestAppointment.setIsToday(true);
+      latestAppointment.setLastUpdBy(latestAppointment.getEmployee().getId());
+    }
+    ;
+    appointmentRepository.save(latestAppointment);
   }
 
 }
