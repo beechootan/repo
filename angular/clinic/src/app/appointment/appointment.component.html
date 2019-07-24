@@ -1,30 +1,86 @@
-<div id="header">
-  <img src="http://www.gigya.com/wp-content/uploads/2015/04/dell_logo-white.svg"/>
-  <h1>Dell In-House Doctor Appoinment System - 2nd page</h1>
-</div>
-<div id="note">
-  <h1>Doctor Available Time</h1>
-  <p>Monday   : 09:00 AM - 12:00 PM</p>
-  <p>Tuesday  : Off</p>
-  <p>Wednesday: 09:00 AM - 12:00 PM</p>
-  <p>Thursday : 02:00 PM - 04:00 PM</p>
-  <p>Friday   : Off</p>
-  <h1>Doctor's Information</h1>
-  <p>from ASP Medical Center</p>
-  </div>
-  <div id="container">
-      <h1>Doctor Is </h1>
-  </div>
-  <div id="container">
-    <h1>Doctor Is </h1>
-</div>      
-<div id="tokenbox">
-  <h1>Current Number</h1>
-  </div>
-  <div id="tokenbox">
-    <h1>Your Token Is</h1>
-  </div>
-  <div id="buttoncontainer">
-    <a class="button" href="#">Make Appointment</a>
-    <button class="button" ><a routerLink="/appointment"> Manage Appoinments </a></button>
-  </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+
+    <title>In-House Clinic Appointment</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS --> 
+    <!-- hiding this path since manually placing the CSS under home.component.scss -->
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <img src="assets/dell.logo.PNG" height="35">
+      <a class="navbar-brand" href="#">    Dell In-House Clinic Apppoinment System</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+              <a class="nav-link"  [routerLink]="['appointment']">Manage Appoinments</a>
+              <!-- <button class="button" ><a routerLink="/appointment"> Manage Appoinments </a></button> -->
+            </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Manage</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="#">Appointments</a>
+                <a class="dropdown-item" href="#">Doctor Availibility</a>
+                <a class="dropdown-item" href="https://www.aspmedic.com/">About ASP</a>
+              </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Badge Id" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-6">
+                      <h5 class="display-4">Manage Appointment</h5>
+                      <p><a class="btn btn-primary btn-lg" href="#" role="button">Update</a></p>
+                  </div>
+              </div>
+            </div>
+      </div>
+
+      <div class="container">
+        Please build appointment tables here 
+      </div>
+
+    </main>
+
+    <footer class="container">
+      <p>&copy; Company 2017-2018</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
