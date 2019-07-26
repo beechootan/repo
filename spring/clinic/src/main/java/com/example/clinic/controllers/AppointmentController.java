@@ -28,32 +28,49 @@ public class AppointmentController {
 
   @GetMapping(value = "/appointments", produces = "application/json")
   public List<Appointment> displayAppointments() {
-    return appointmentRepository.findAllByIsToday(true);
+    // return appointmentRepository.findAllByIsToday(true);
+    return appointmentRepository.findAll();
+  }
+
+  @GetMapping(value = "/appointments/{name}/today", produces = "application/json")
+  public Appointment findTodayAppointmentByEmployee(@PathVariable String name) {
+    return appointmentRepository.findCurrentAppointmentByEmployeeName(name);
   }
 
   @GetMapping(value = "/appointments/currentQueue", produces = "application/json")
-  public List<Appointment> displayCurrentAppointments() {
+  public Appointment displayCurrentAppointments() {
     String status = "In Progress";
-    return appointmentRepository.findAllByStatus(status);
+    return appointmentRepository.findByStatus(status);
+  }
+
+  @GetMapping(value = "/appointments/totalQueue", produces = "application/json")
+  public Appointment displayTotalAppointments() {
+    return appointmentRepository.findByIsToday();
   }
 
   @PostMapping(value = "/appointments/{employeeName}")
   public void addAppointment(@RequestBody Appointment appointment, @PathVariable("employeeName") String employeeName) {
 
-    Appointment latestAppointment = appointmentRepository.findAll().get(0);
-    if (latestAppointment != null) {
-      Integer maxQueue = latestAppointment.getQueueNum();
-      System.out.println("========================");
-      System.out.println(maxQueue);
+    Appointment latestAppointment = appointmentRepository.findCurrentAppointmentByEmployeeName(employeeName);
+    Integer maxQueue = appointmentRepository.findByIsToday().getQueueNum();
+    if (maxQueue != null) {
+      maxQueue = maxQueue + 1;
+    } else {
+      maxQueue = 1;
     }
+    ;
+    if (latestAppointment != null) {
 
-    // if (maxQueue != null) {
-    // appointment.setQueueNum(maxQueue + 1);
-    // } else {
-    // appointment.setQueueNum(1);
-    // }
-
-    appointmentRepository.save(appointment);
+    } else {
+      latestAppointment.setQueueNum(maxQueue);
+      latestAppointment.setEmployee(employeeRepository.findByEmployeeName(employeeName));
+      latestAppointment.setSymptom(appointment.getSymptom());
+      latestAppointment.setStatus("Open");
+      latestAppointment.setIsToday(true);
+      latestAppointment.setLastUpdBy(latestAppointment.getEmployee().getId());
+    }
+    ;
+    appointmentRepository.save(latestAppointment);
   }
 
 }
