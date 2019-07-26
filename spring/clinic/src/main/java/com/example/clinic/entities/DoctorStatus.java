@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 /**
  * DoctorStatus
  */
-@Entity(name = "doctorStatus")
+@Entity(name = "doctor_status")
 public class DoctorStatus {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
