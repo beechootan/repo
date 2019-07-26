@@ -1,106 +1,98 @@
-/* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
-
-#header {
-    padding: 60px;
-    text-align: center;
-    background: #4e5157;
-    background: -webkit-gradient(linear, left top, left bottom, from(#656a6b), to(#25768f));
-    color: white;
-    font-size: 15px;
-  }
-
-#header img {
-    float: left;
-    width: 100px;
-    height: 100px;
-    background: #555;
-  }
-
-#note {
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
-    column-count: 1;
-    -webkit-column-gap: 10px;
-    -moz-column-gap: 10px;
-    column-gap: 10px;
-    -webkit-column-rule: 1px solid rgba(28,110,164,0.5);
-    -moz-column-rule: 1px solid rgba(28,110,164,0.5);
-    column-rule: 1px solid transparent;
-    float: left;
-    width: 40%;
-    margin-left: 20px;
-    
-    }
-
-#container {
-        -webkit-column-count: 1;
-        -moz-column-count: 1;
-        column-count: 1;
-        -webkit-column-gap: 10px;
-        -moz-column-gap: 10px;
-        column-gap: 10px;
-        -webkit-column-rule: 1px solid rgba(28,110,164,0.5);
-        -moz-column-rule: 1px solid rgba(28,110,164,0.5);
-        column-rule: 3px solid black;
-        float: left;
-        width: 20%;
-        margin-top: 1%;
-        margin-left: 20px;
-        -webkit-box-shadow: 5px 5px 15px 5px #000000; 
-        box-shadow: 5px 5px 15px 5px #000000;
-        background:
-        #747578;
-        }
-  
- #tokenbox {
-          border: 5px groove #1C6EA4;
-          border-radius: 20px 20px 20px 20px;
-          float: left;
-          width: 20%;
-          margin-top: 1%;
-          margin-left: 20px;
+element.style {
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+    line-height: 1;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
-#buttoncontainer {
-  float: left;
-  width: 40%;
-  margin-top: 10%;
-  margin-left: 20px;}
 
-.button {
-  display: inline-block;
-  margin:10px;
-  text-align: center;
-  vertical-align: middle;
-  padding: 14px 24px;
-  border: 1px solid #25768f;
-  border-radius: 8px;
-  background: #3cc0e9;
-  background: -webkit-gradient(linear, left top, left bottom, from(#3cc0e9), to(#25768f));
-  background: -moz-linear-gradient(top, #3cc0e9, #25768f);
-  background: linear-gradient(to bottom, #3cc0e9, #25768f);
-  -webkit-box-shadow: #37b2d7 0px 0px 40px 0px;
-  -moz-box-shadow: #37b2d7 0px 0px 40px 0px;
-  box-shadow: #37b2d7 0px 0px 40px 0px;
-  text-shadow: #174a5a 1px 1px 1px;
-  font: normal normal bold 20px arial;
-  color: #ffffff;
-  text-decoration: none;
+
+.mainbanner {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
 }
-.button:hover,
-.button:focus {
-  border: 1px solid #2e94b3;
-  background: #48e6ff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#48e6ff), to(#2c8eac));
-  background: -moz-linear-gradient(top, #48e6ff, #2c8eac);
-  background: linear-gradient(to bottom, #48e6ff, #2c8eac);
-  color: #ffffff;
-  text-decoration: none;
+img {
+    vertical-align: middle;
 }
-.button:active {
-  background: #25768f;
-  background: -webkit-gradient(linear, left top, left bottom, from(#25768f), to(#25768f));
-  background: -moz-linear-gradient(top, #25768f, #25768f);
-  background: linear-gradient(to bottom, #25768f, #25768f);
+img {
+    border: 0;
+}
+img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body, html {
+    font-family: Lato,sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 16px;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+body {
+    font-size: 12px;
+    line-height: 18px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #595959;
+}
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+html, button, input, select, textarea {
+    font-family: sans-serif;
+    color: #222;
+}
+user agent stylesheet
+html {
+    color: -internal-root-color;
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+::selection {
+    background: rgba(2,139,255,1);
+    color: #fff;
+    text-shadow: none;
 }
