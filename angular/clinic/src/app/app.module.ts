@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,RouterModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
