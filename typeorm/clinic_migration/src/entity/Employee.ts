@@ -17,9 +17,6 @@ export class Employee {
     email: String;
 
     @Column({nullable : true})
-    username: String;
-
-    @Column({nullable : true})
     password: String
 
     @Column()
