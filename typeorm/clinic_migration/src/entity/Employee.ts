@@ -13,6 +13,15 @@ export class Employee {
     @Column()
     employeeName: String;
 
+    @Column({nullable : true})
+    email: String;
+
+    @Column({nullable : true})
+    username: String;
+
+    @Column({nullable : true})
+    password: String
+
     @Column()
     isNurse: boolean;
 
