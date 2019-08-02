@@ -13,10 +13,10 @@ export class Employee {
     @Column()
     employeeName: String;
 
-    @Column({nullable : true})
+    @Column()
     email: String;
 
-    @Column({nullable : true})
+    @Column()
     password: String
 
     @Column()
