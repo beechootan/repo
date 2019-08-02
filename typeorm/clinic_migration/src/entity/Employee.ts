@@ -14,6 +14,12 @@ export class Employee {
     employeeName: String;
 
     @Column()
+    email: String;
+
+    @Column()
+    password: String
+
+    @Column()
     isNurse: boolean;
 
     @OneToMany(type => Appointment, appointment=> appointment.employee)
