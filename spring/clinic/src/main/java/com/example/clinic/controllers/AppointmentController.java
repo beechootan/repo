@@ -48,29 +48,53 @@ public class AppointmentController {
     return appointmentRepository.findByIsToday();
   }
 
+  @PostMapping(value = "/appointments/{queueNum}/updateCheckInTime")
+  public void updateCheckIn(@PathVariable("queueNum") Long queueNum) {
+    Appointment currentAppointment = appointmentRepository.findByQueueNum(queueNum);
+    currentAppointment.setCheckInTime(java.time.LocalDateTime.now());
+    currentAppointment.setStatus("In Progress");
+    currentAppointment.setLastUpdBy(112233);
+    appointmentRepository.save(currentAppointment);
+  }
+
+  @PostMapping(value = "/appointments/{queueNum}/updateCheckOutTime")
+  public void updateCheckOut(@PathVariable("queueNum") Long queueNum) {
+    Appointment currentAppointment = appointmentRepository.findByQueueNum(queueNum);
+    currentAppointment.setCheckOutTime(java.time.LocalDateTime.now());
+    currentAppointment.setStatus("Completed");
+    currentAppointment.setLastUpdBy(112233);
+    appointmentRepository.save(currentAppointment);
+  }
+
+  @PostMapping(value = "/appointments/{queueNum}/cancel")
+  public void cancelAppointment(@PathVariable("queueNum") Long queueNum) {
+    Appointment currentAppointment = appointmentRepository.findByQueueNum(queueNum);
+    currentAppointment.setStatus("Cancel");
+    currentAppointment.setLastUpdBy(112233);
+    appointmentRepository.save(currentAppointment);
+  }
+
   @PostMapping(value = "/appointments/{employeeName}")
   public void addAppointment(@RequestBody Appointment appointment, @PathVariable("employeeName") String employeeName) {
 
     Appointment latestAppointment = appointmentRepository.findCurrentAppointmentByEmployeeName(employeeName);
     Integer maxQueue = appointmentRepository.findByIsToday().getQueueNum();
+    Integer nextQueue = 1;
     if (maxQueue != null) {
-      maxQueue = maxQueue + 1;
-    } else {
-      maxQueue = 1;
+      nextQueue = maxQueue + 1;
     }
     ;
     if (latestAppointment != null) {
 
     } else {
-      latestAppointment.setQueueNum(maxQueue);
-      latestAppointment.setEmployee(employeeRepository.findByEmployeeName(employeeName));
-      latestAppointment.setSymptom(appointment.getSymptom());
-      latestAppointment.setStatus("Open");
-      latestAppointment.setIsToday(true);
-      latestAppointment.setLastUpdBy(latestAppointment.getEmployee().getId());
+      appointment.setQueueNum(nextQueue);
+      appointment.setEmployee(employeeRepository.findByEmployeeName(employeeName));
+      appointment.setStatus("Open");
+      appointment.setIsToday(true);
+      appointment.setLastUpdBy(appointment.getEmployee().getId());
     }
     ;
-    appointmentRepository.save(latestAppointment);
+    appointmentRepository.save(appointment);
   }
 
 }

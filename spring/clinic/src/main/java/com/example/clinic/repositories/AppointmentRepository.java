@@ -21,4 +21,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
   @Query(value = "SELECT TOP 1 * FROM appointment WHERE isToday = 1 order by queueNum desc", nativeQuery = true)
   Appointment findByIsToday();
+
+  Appointment findByQueueNum(Long queueNum);
 }
