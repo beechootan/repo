@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { DoctorService } from '../doctor.service'
+// import { DocStatusService } from '../doctorstatus.service'
+
+interface Doctor {
+  id: number
+  status: boolean
+}
+
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +16,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  doctors: Doctor[] = []
+
+
+  constructor(private docStatusService: DoctorService) { }
 
   ngOnInit() {
+    this.docStatusService.getDoctors().subscribe(response => {
+      this.doctors = response as Doctor[]
+    })
   }
 
 }
