@@ -27,4 +27,9 @@ public class EmployeeController {
     return employeeRepository.findByEmployeeName(name);
   }
 
+  @GetMapping(value = "/employee/{name}", produces = "application/json")
+  public Boolean verifyIsNurse(@PathVariable String name) {
+    return employeeRepository.findByEmployeeName(name).getIsNurse();
+  }
+
 }
