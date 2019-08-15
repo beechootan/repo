@@ -45,6 +45,7 @@ public class AppointmentController {
 
   @GetMapping(value = "/appointments/totalQueue", produces = "application/json")
   public Appointment displayTotalAppointments() {
+
     return appointmentRepository.findByIsToday();
   }
 
