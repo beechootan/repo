@@ -38,33 +38,37 @@ public class AppointmentController {
   }
 
   @GetMapping(value = "/appointments/currentQueue", produces = "application/json")
-  public Appointment displayCurrentAppointments() {
+  public Integer displayCurrentAppointments() {
     String status = "In Progress";
-    return appointmentRepository.findByStatus(status);
+    return appointmentRepository.findByStatus(status).getQueueNum();
   }
 
   @GetMapping(value = "/appointments/totalQueue", produces = "application/json")
-  public Appointment displayTotalAppointments() {
-    return appointmentRepository.findByIsToday();
+  public Integer displayTotalAppointments() {
+    int totalQueue = 0;
+    if (appointmentRepository.findTotalQueue() != null) {
+      totalQueue = appointmentRepository.findTotalQueue().getQueueNum();
+    }
+    ;
+    return totalQueue;
   }
 
   @PostMapping(value = "/appointments/{employeeName}")
-  public void addAppointment(@RequestBody Appointment appointment, @PathVariable("employeeName") String employeeName) {
+  public void addAppointment(@PathVariable("employeeName") String employeeName) {
 
-    Appointment latestAppointment = appointmentRepository.findCurrentAppointmentByEmployeeName(employeeName);
-    Integer maxQueue = appointmentRepository.findByIsToday().getQueueNum();
+    Appointment latestAppointment = appointmentRepository.findCurrentAppointmentByEmployeeName(employeeName)
+        .orElse(new Appointment());
+    Integer maxQueue = displayTotalAppointments();
     if (maxQueue != null) {
       maxQueue = maxQueue + 1;
     } else {
       maxQueue = 1;
     }
     ;
-    if (latestAppointment != null) {
-
-    } else {
+    if (latestAppointment.getQueueNum() == 1) {
       latestAppointment.setQueueNum(maxQueue);
       latestAppointment.setEmployee(employeeRepository.findByEmployeeName(employeeName));
-      latestAppointment.setSymptom(appointment.getSymptom());
+      latestAppointment.setSymptom("");
       latestAppointment.setStatus("Open");
       latestAppointment.setIsToday(true);
       latestAppointment.setLastUpdBy(latestAppointment.getEmployee().getId());

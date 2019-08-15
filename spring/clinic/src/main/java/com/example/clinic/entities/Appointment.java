@@ -124,4 +124,8 @@ public class Appointment {
     this.employee = employee;
   }
 
+  public Appointment orElse(Appointment appointment) {
+    return null;
+  }
+
 }
