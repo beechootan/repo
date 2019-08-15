@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http' ;
+import { checkDoctorStatus } from './doctorstatus';
+
 
 
 @Injectable({
@@ -8,17 +10,18 @@ import { HttpClient } from '@angular/common/http' ;
 })
 export class DoctorstatusService {
 
-  private doctor: BehaviorSubject<any> = new BehaviorSubject([])
+  // private doctor: BehaviorSubject<any> = new BehaviorSubject([])
+  private _url : string ='http://localhost:8080/api/doctorStatus';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
 
-    this.getDocStatus().subscribe(response => {
-    this.doctor.next(response)
-    })
-  } 
+  //   this.getDocStatus().subscribe(response => {
+  //   this.doctor.next(response)
+  //   })
+  // } 
 
-  getDocStatus() {
-    return this.http.get('http://localhost:8080/api/doctorStatus')
+  getDocStatus(): Observable<checkDoctorStatus[]> {
+    return this.http.get<checkDoctorStatus[]>(this._url);
    
   }
 

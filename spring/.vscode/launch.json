@@ -1,14 +1,14 @@
 {
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Spring Boot-DemoApplication<clinic>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "mainClass": "com.example.clinic.DemoApplication",
-            "projectName": "clinic",
-            "args": ""
-        }
-    ]
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-DemoApplication<clinic>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.example.clinic.DemoApplication",
+      "projectName": "clinic",
+      "args": ""
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Appointment } from "./Appointment";
 
 @Entity()
@@ -22,7 +22,7 @@ export class Employee {
     @Column()
     isNurse: boolean;
 
-    @OneToMany(type => Appointment, appointment=> appointment.employee)
+    @OneToMany(type => Appointment, appointment => appointment.employee)
     appointment: Appointment[]
 
 
