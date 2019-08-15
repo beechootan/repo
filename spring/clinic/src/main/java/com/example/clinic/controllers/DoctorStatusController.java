@@ -21,7 +21,7 @@ public class DoctorStatusController {
 
   @GetMapping(value = "/doctorStatus", produces = "application/json")
   public DoctorStatus findById() {
-    long id = 1;
+    long id = 4;
     return doctorStatusRepository.findById(id).orElse(new DoctorStatus());
   }
 
