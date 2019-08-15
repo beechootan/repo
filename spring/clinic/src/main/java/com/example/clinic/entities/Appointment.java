@@ -1,6 +1,6 @@
 package com.example.clinic.entities;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,10 +27,10 @@ public class Appointment {
   private int queueNum;
 
   @Column(name = "checkInTime")
-  private Date checkInTime;
+  private LocalDateTime checkInTime;
 
   @Column(name = "checkOutTime")
-  private Date checOutTime;
+  private LocalDateTime checkOutTime;
 
   @Column(name = "symptom")
   private String symptom;
@@ -64,20 +64,20 @@ public class Appointment {
     this.queueNum = queueNum;
   }
 
-  public Date getCheckInTime() {
+  public LocalDateTime getCheckInTime() {
     return this.checkInTime;
   }
 
-  public void setCheckInTime(Date checkInTime) {
+  public void setCheckInTime(LocalDateTime checkInTime) {
     this.checkInTime = checkInTime;
   }
 
-  public Date getChecOutTime() {
-    return this.checOutTime;
+  public LocalDateTime getCheckOutTime() {
+    return this.checkOutTime;
   }
 
-  public void setChecOutTime(Date checOutTime) {
-    this.checOutTime = checOutTime;
+  public void setCheckOutTime(LocalDateTime checOutTime) {
+    this.checkOutTime = checOutTime;
   }
 
   public String getSymptom() {
