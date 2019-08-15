@@ -20,17 +20,21 @@ public class DoctorStatusController {
   DoctorStatusRepository doctorStatusRepository;
 
   @GetMapping(value = "/doctorStatus", produces = "application/json")
-  public DoctorStatus findById() {
-    long id = 1;
-    return doctorStatusRepository.findById(id).orElse(new DoctorStatus());
+  public String findByTop() {
+    // long id = 1;
+    String status = "Not available";
+    if (doctorStatusRepository.findByTop().getStatus()) {
+      status = "Available";
+    }
+    return status;
   }
 
   @PostMapping(value = "/doctorStatus/{status}")
   public void updateDoctorStatus(@PathVariable("status") Boolean status) {
-    long id = 1;
-    DoctorStatus existingDoctorStatus = doctorStatusRepository.findById(id).orElse(new DoctorStatus());
+    // long id = 1;
+    DoctorStatus existingDoctorStatus = doctorStatusRepository.findByTop();
     if (existingDoctorStatus.getId() != null) {
-      existingDoctorStatus.setId(id);
+      // existingDoctorStatus.setId(id);
       existingDoctorStatus.setStatus(status);
       doctorStatusRepository.save(existingDoctorStatus);
     }
