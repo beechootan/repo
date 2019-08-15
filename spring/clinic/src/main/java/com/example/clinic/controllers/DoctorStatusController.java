@@ -20,11 +20,6 @@ public class DoctorStatusController {
   DoctorStatusRepository doctorStatusRepository;
 
   @GetMapping(value = "/doctorStatus", produces = "application/json")
-<<<<<<< HEAD
-  public DoctorStatus findById() {
-    long id = 4;
-    return doctorStatusRepository.findById(id).orElse(new DoctorStatus());
-=======
   public String findByTop() {
     // long id = 1;
     String status = "Not available";
