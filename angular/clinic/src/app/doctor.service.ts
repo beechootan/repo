@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject } from 'rxjs';
 
-const baseUrl = 'http://localhost:8080/api/doctorStatus'
+// const baseUrl = 'http://localhost:8080/api/doctorStatus'
 
 @Injectable({
   providedIn: 'root'

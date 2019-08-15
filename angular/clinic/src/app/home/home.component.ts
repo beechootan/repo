@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DoctorService } from '../doctor.service'
 // import { DocStatusService } from '../doctorstatus.service'
 
-interface Doctor {
-  id: number
-  status: boolean
-}
 
 
 
@@ -16,15 +12,21 @@ interface Doctor {
 })
 export class HomeComponent implements OnInit {
 
-  doctors: Doctor[] = []
-
+  
+  public doctors:any = [];
 
   constructor(private docStatusService: DoctorService) { }
 
   ngOnInit() {
-    this.docStatusService.getDoctors().subscribe(response => {
-      this.doctors = response as Doctor[]
-    })
+    // this.docStatusService.getDoctors().subscribe(response => {
+    //   this.doctors = response as Doctor[]
+    // })
+    this.docStatusService.getDoctors()
+      .subscribe(data => {
+        
+        this.doctors.push(data)
+      });
+     
   }
 
 }
