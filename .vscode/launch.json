@@ -1,4 +1,18 @@
 {
+<<<<<<< HEAD
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-DemoApplication<clinic>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.example.clinic.DemoApplication",
+      "projectName": "clinic",
+      "args": ""
+    }
+  ]
+=======
     "configurations": [
         {
             "type": "java",
@@ -11,4 +25,5 @@
             "args": ""
         }
     ]
+>>>>>>> ff8657abee5bbe8fcbf81757a67b43e5f854e63e
 }

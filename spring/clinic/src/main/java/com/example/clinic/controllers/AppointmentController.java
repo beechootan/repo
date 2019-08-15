@@ -33,14 +33,23 @@ public class AppointmentController {
   }
 
   @GetMapping(value = "/appointments/{name}/today", produces = "application/json")
-  public Appointment findTodayAppointmentByEmployee(@PathVariable String name) {
-    return appointmentRepository.findCurrentAppointmentByEmployeeName(name);
+  public Integer findTodayAppointmentByEmployee(@PathVariable String name) {
+    Integer appointmentToday = 0;
+    if (appointmentRepository.findCurrentAppointmentByEmployeeName(name) != null) {
+      appointmentToday = appointmentRepository.findCurrentAppointmentByEmployeeName(name).getQueueNum();
+    }
+    return appointmentToday;
   }
 
   @GetMapping(value = "/appointments/currentQueue", produces = "application/json")
   public Integer displayCurrentAppointments() {
-    String status = "In Progress";
-    return appointmentRepository.findByStatus(status).getQueueNum();
+    Integer currentQueue = 0;
+    if (appointmentRepository.findByStatus("In Progress") != null) {
+      currentQueue = appointmentRepository.findByStatus("In Progress").getQueueNum();
+    } else {
+      currentQueue = appointmentRepository.findCompleted().getQueueNum();
+    }
+    return currentQueue;
   }
 
   @GetMapping(value = "/appointments/totalQueue", produces = "application/json")

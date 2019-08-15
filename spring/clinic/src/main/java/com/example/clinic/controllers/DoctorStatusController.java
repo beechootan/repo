@@ -31,14 +31,16 @@ public class DoctorStatusController {
 
   @PostMapping(value = "/doctorStatus/{status}")
   public void updateDoctorStatus(@PathVariable("status") Boolean status) {
-    // long id = 1;
     DoctorStatus existingDoctorStatus = doctorStatusRepository.findByTop();
     if (existingDoctorStatus.getId() != null) {
       // existingDoctorStatus.setId(id);
       existingDoctorStatus.setStatus(status);
       doctorStatusRepository.save(existingDoctorStatus);
     }
-    ;
+    
   }
 
 }
+
+  
+  

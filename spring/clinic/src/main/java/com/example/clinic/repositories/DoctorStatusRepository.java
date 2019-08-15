@@ -12,4 +12,5 @@ public interface DoctorStatusRepository extends JpaRepository<DoctorStatus, Long
 
   @Query(value = "SELECT TOP 1 * FROM doctor_status", nativeQuery = true)
   DoctorStatus findByTop();
+
 }
