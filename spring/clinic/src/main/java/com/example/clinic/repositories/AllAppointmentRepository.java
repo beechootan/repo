@@ -1,7 +1,6 @@
 package com.example.clinic.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.clinic.entities.AllAppointment;
 
