@@ -1,5 +1,7 @@
 {
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   "configurations": [
     {
       "type": "java",
@@ -13,6 +15,7 @@
     }
   ]
 =======
+>>>>>>> 33bf770a7d964e5b22e977ad0309fa8ae007c24e
     "configurations": [
         {
             "type": "java",
@@ -25,5 +28,8 @@
             "args": ""
         }
     ]
+<<<<<<< HEAD
+=======
 >>>>>>> ff8657abee5bbe8fcbf81757a67b43e5f854e63e
+>>>>>>> 33bf770a7d964e5b22e977ad0309fa8ae007c24e
 }
