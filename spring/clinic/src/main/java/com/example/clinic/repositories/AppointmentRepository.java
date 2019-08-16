@@ -11,7 +11,10 @@ import org.springframework.data.jpa.repository.Query;
  * AppointmentRepository
  */
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
-  List<Appointment> findAllByIsToday(Boolean isToday);
+  // List<Appointment> findAllByIsToday(Boolean isToday);
+
+  @Query(value = "SELECT * FROM appointment WHERE isToday = 1 ORDER BY queueNum ASC", nativeQuery = true)
+  List<Appointment> findAllByIsToday();
 
   // List<Appointment> findAllByStatus(String status);
   @Query(value = "SELECT * FROM employee e, appointment a WHERE e.id= a.employeeId AND e.employeeName=?1 AND a.status='Open' AND a.isToday = 1", nativeQuery = true)

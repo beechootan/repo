@@ -1,14 +1,18 @@
 package com.example.clinic.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.time.LocalDateTime;
 
+import com.example.clinic.entities.Appointment;
 import com.example.clinic.entities.AllAppointment;
 import com.example.clinic.entities.Employee;
+import com.example.clinic.entities.EmployeeOnly;
 import com.example.clinic.repositories.AppointmentRepository;
 import com.example.clinic.repositories.AllAppointmentRepository;
 import com.example.clinic.repositories.EmployeeRepository;
+import com.example.clinic.repositories.EmployeeOnlyRepository;
+import com.example.clinic.responseFormat.ShowAppointment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +36,23 @@ public class AppointmentController {
   @Autowired
   EmployeeRepository employeeRepository;
 
+  @Autowired
+  EmployeeOnlyRepository employeeOnlyRepository;
+
   @GetMapping(value = "/appointments", produces = "application/json")
-  public List<AllAppointment> displayAppointments() {
+  public List<ShowAppointment> displayAppointment() {
     // return allAppointmentRepository.findAllByIsToday(true);
-    return allAppointmentRepository.findByIsToday();
+    // return allAppointmentRepository.findByIsToday();
+    List<AllAppointment> allAppointments = allAppointmentRepository.findByIsToday();
+    List<ShowAppointment> result = new ArrayList<ShowAppointment>();
+    for (AllAppointment appointment : allAppointments) {
+      EmployeeOnly employee = employeeOnlyRepository.findById(appointment.getEmployeeId()).orElse(null);
+      if (employee != null) {
+        result.add(new ShowAppointment(appointment, employee));
+      }
+    }
+
+    return result;
 
   }
 
@@ -93,48 +110,46 @@ public class AppointmentController {
       newAppointment.setLastUpdBy(employee.getId());
       allAppointmentRepository.save(newAppointment);
       message = "Appointment made. ";
+      latestAppointment = newAppointment;
     }
     ;
     message = message + "Your queue number is " + latestAppointment.getQueueNum();
     return message;
   }
 
-  // @PostMapping(value = "/appointments/{nurseId}/{appointmentId}/{type}")
-  // public void updateTime(@PathVariable("nurseId") Long nurseId,
-  // @PathVariable("appointmentId") Long id,
-  // @PathVariable("type") String type) {
-  // AllAppointment updateAppointment = allAppointmentRepository.findById(id);
-  // LocalDateTime now = LocalDateTime.now();
-  // updateAppointment.setLastUpdBy(nurseId);
-  // if (type == "checkIn") {
-  // updateAppointment.setCheckInTime(now);
-  // updateAppointment.setStatus("In Progress");
+  @PostMapping(value = "/appointments/{nurseId}/{appointmentId}/{type}")
+  public void updateTime(@PathVariable("nurseId") Long nurseId, @PathVariable("appointmentId") Long id,
+      @PathVariable("type") String type) {
+    AllAppointment updateAppointment = allAppointmentRepository.findById(id).orElse(null);
+    LocalDateTime now = LocalDateTime.now();
+    updateAppointment.setLastUpdBy(nurseId);
+    if (type == "checkIn") {
+      updateAppointment.setCheckInTime(now);
+      updateAppointment.setStatus("In Progress");
 
-  // }
-  // ;
+    }
+    ;
 
-  // if (type == "checkOut") {
-  // updateAppointment.setCheckOutTime(now);
-  // updateAppointment.setStatus("Completed");
-  // }
-  // ;
+    if (type == "checkOut") {
+      updateAppointment.setCheckOutTime(now);
+      updateAppointment.setStatus("Completed");
+    }
+    ;
 
-  // allAppointmentRepository.save(updateAppointment);
+    allAppointmentRepository.save(updateAppointment);
 
-  // }
+  }
 
-  // @PostMapping(value = "/appointments/cancel/{employeeId}/{appointmentId}")
-  // public void updateCancelStatus(@PathVariable("employeeId") Long employeeId,
-  // @PathVariable("appointmentId") Long id) {
-  // AllAppointment updateCancelAppointment =
-  // allAppointmentRepository.findById(id);
+  @PostMapping(value = "/appointments/cancel/{employeeId}/{appointmentId}")
+  public void updateCancelStatus(@PathVariable("employeeId") Long employeeId, @PathVariable("appointmentId") Long id) {
+    AllAppointment updateCancelAppointment = allAppointmentRepository.findById(id);
 
-  // updateCancelAppointment.setLastUpdBy(employeeId);
-  // updateCancelAppointment.setStatus("Cancel");
+    updateCancelAppointment.setLastUpdBy(employeeId);
+    updateCancelAppointment.setStatus("Cancel");
 
-  // allAppointmentRepository.save(updateCancelAppointment);
+    allAppointmentRepository.save(updateCancelAppointment);
 
-  // }
+  }
 
   @PostMapping(value = "/appointments/closeQueue")
   public void updateCloseQueue() {
@@ -143,13 +158,11 @@ public class AppointmentController {
     for (int i = 0; i < closeQueues.size(); i++) {
       closeQueue = closeQueues.get(i);
       closeQueue.setIsToday(false);
-      // String status = closeQueue.getStatus();
-      // if (status == "Open") {
-      // closeQueue.setStatus("Cancel");
-      // }
-      // if (status == "In Progress") {
-      // closeQueue.setStatus("Cancel");
-      // }
+      String status = closeQueue.getStatus();
+
+      if (status.equals("In Progress") || status.equals("Open")) {
+        closeQueue.setStatus("Cancel");
+      }
 
       allAppointmentRepository.save(closeQueue);
     }

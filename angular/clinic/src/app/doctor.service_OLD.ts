@@ -17,7 +17,7 @@ export class DoctorService {
   })
 }
 getDoctors(){
-    return this.http.get('http://localhost:8080/api/doctorStatus')
+    return this.http.get('http://localhost:8080/api/doctorStatus', {responseType: "text"})
   }
  
 }
