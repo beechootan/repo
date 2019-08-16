@@ -43,7 +43,7 @@
             <h5 class="display-4" style="">Manage Appointment</h5>
           </div>
           <div class="limiter">
-            <div class="container-table100">
+            <div class="container-table100" >
               <div class="wrap-table100">
                 <div class="row header">
                   <div class="cell">
@@ -67,7 +67,7 @@
                   <h5 *ngFor="let appointment of appointments" >{{ appointment.employee.employeeName }}</h5>
                   </div>
                   <div class="cell">
-                  <h5>558818</h5>
+                  <h5 *ngFor="let appointment of appointments" >{{ appointment.employee.badgeNumber }}</h5>
                   </div>
                   <div class="cell">
                   <p><a class="btn btn-secondary" href="#" role="button">Check In Time</a></p>

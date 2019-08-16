@@ -14,8 +14,7 @@ export class AppointmentComponent implements OnInit {
   ngOnInit() {
     this.appointmentStatus.getAppStatus()
     .subscribe(data => {
-      debugger
-      this.appointments.push(data)
+      this.appointments = data
     });
    
   }
