@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+// import { TestBed } from '@angular/core/testing';
 
-import { DoctorstatusService } from './doctorstatus.service';
+// import { DoctorstatusService } from './doctorstatus.service';
 
-describe('DoctorstatusService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+// describe('DoctorstatusService', () => {
+//   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: DoctorstatusService = TestBed.get(DoctorstatusService);
-    expect(service).toBeTruthy();
-  });
-});
+//   it('should be created', () => {
+//     const service: DoctorstatusService = TestBed.get(DoctorstatusService);
+//     expect(service).toBeTruthy();
+//   });
+// });
