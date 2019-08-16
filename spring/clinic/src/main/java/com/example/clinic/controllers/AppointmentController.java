@@ -105,11 +105,45 @@ public class AppointmentController {
     return totalQueue;
   }
 
-  @PostMapping(value = "/appointments/{employeeId}/addAppointment")
-  public String addAppointment(@PathVariable("employeeId") Long id) {
+  // @PostMapping(value = "/appointments/{employeeId}/addAppointment")
+  // public String addAppointment(@PathVariable("employeeId") Long id) {
+  // String message = "";
+  // Employee employee = employeeRepository.findById(id).orElse(null);
+  // Appointment latestAppointment =
+  // appointmentRepository.findCurrentAppointmentById(employee.getId());
+  // Integer maxQueue = displayTotalAppointments();
+  // if (maxQueue != null) {
+  // maxQueue = maxQueue + 1;
+  // } else {
+  // maxQueue = 1;
+  // }
+  // ;
+  // if (appointmentRepository.findCurrentAppointmentById(id) != null) {
+  // message = " XX ";
+  // } else {
+  // Appointment newAppointment = new Appointment();
+  // newAppointment.setQueueNum(maxQueue);
+  // newAppointment.setEmployeeId(employee.getId());
+  // // newAppointment.setSymptom("");
+  // newAppointment.setStatus("Open");
+  // newAppointment.setIsToday(true);
+  // newAppointment.setLastUpdBy(employee.getBadgeNumber());
+  // appointmentRepository.save(newAppointment);
+  // message = "Appointment made. ";
+  // latestAppointment = newAppointment;
+  // }
+  // ;
+  // message = message + "Your queue number is " +
+  // latestAppointment.getQueueNum();
+  // return message;
+  // }
+
+  @PostMapping(value = "/appointments/{employeeId}/{patientId}/addAppointment")
+  public String addAppointment(@PathVariable("employeeId") Long id, @PathVariable("patientId") Long patientId) {
     String message = "";
     Employee employee = employeeRepository.findById(id).orElse(null);
-    Appointment latestAppointment = appointmentRepository.findCurrentAppointmentById(employee.getId());
+    Employee patient = employeeRepository.findById(patientId).orElse(null);
+    Appointment latestAppointment = appointmentRepository.findCurrentAppointmentById(patient.getId());
     Integer maxQueue = displayTotalAppointments();
     if (maxQueue != null) {
       maxQueue = maxQueue + 1;
@@ -117,22 +151,35 @@ public class AppointmentController {
       maxQueue = 1;
     }
     ;
-    if (appointmentRepository.findCurrentAppointmentById(id) != null) {
-      message = " XX ";
+
+    if (latestAppointment != null) {
+      message = "Your queue number is " + latestAppointment.getQueueNum();
     } else {
-      Appointment newAppointment = new Appointment();
-      newAppointment.setQueueNum(maxQueue);
-      newAppointment.setEmployeeId(employee.getId());
-      // newAppointment.setSymptom("");
-      newAppointment.setStatus("Open");
-      newAppointment.setIsToday(true);
-      newAppointment.setLastUpdBy(employee.getBadgeNumber());
-      appointmentRepository.save(newAppointment);
-      message = "Appointment made. ";
-      latestAppointment = newAppointment;
+      if (employee != null) {
+        if (employee.getIsNurse() || (employee.getId().equals(patient.getId()))) {
+          Appointment newAppointment = new Appointment();
+          newAppointment.setQueueNum(maxQueue);
+          newAppointment.setEmployeeId(patient.getId());
+          // newAppointment.setSymptom("");
+          newAppointment.setStatus("Open");
+          newAppointment.setIsToday(true);
+          newAppointment.setLastUpdBy(employee.getBadgeNumber());
+          appointmentRepository.save(newAppointment);
+          latestAppointment = newAppointment;
+          message = "Appointment made. Your queue number is " + latestAppointment.getQueueNum();
+        } else {
+          message = "Only nurse has the rights to make appointment for other. Kindly contact clinic. ";
+        }
+        ;
+
+      } else {
+        message = "Not able to locate your employee ID. Please relogin.";
+      }
+      ;
     }
+
     ;
-    message = message + "Your queue number is " + latestAppointment.getQueueNum();
+
     return message;
   }
 
