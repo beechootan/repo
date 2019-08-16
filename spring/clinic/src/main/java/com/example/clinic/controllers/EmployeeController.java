@@ -1,12 +1,13 @@
 package com.example.clinic.controllers;
 
 import com.example.clinic.entities.Employee;
-import com.example.clinic.repositories.EmployeeRepository;
 import com.example.clinic.repositories.AppointmentRepository;
+import com.example.clinic.repositories.EmployeeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,4 +40,15 @@ public class EmployeeController {
     return isNurse;
   }
 
+  @GetMapping(value = "/login", produces = "application/json")
+  public Long verifyLogin(@RequestBody Employee employee) {
+    Long id = 0L;
+    Employee check = employeeRepository.findByEmail(employee.getEmail());
+    if (check != null) {
+      if (check.getPassword().equals(employee.getPassword())) {
+        id = check.getId();
+      }
+    }
+    return id;
+  }
 }
