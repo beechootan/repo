@@ -22,14 +22,21 @@ public class EmployeeController {
   @Autowired
   AppointmentRepository appointmentRepository;
 
-  @GetMapping(value = "/appointments/{name}", produces = "application/json")
-  public Employee findEmployeeAppointment(@PathVariable String name) {
-    return employeeRepository.findByEmployeeName(name);
-  }
+  // @GetMapping(value = "/appointments/{id}", produces = "application/json")
+  // public Employee findEmployeeAppointment(@PathVariable Long id) {
+  // return employeeRepository.findById(id).orElse(null);
+  // }
 
-  @GetMapping(value = "/employee/{name}", produces = "application/json")
-  public Boolean verifyIsNurse(@PathVariable String name) {
-    return employeeRepository.findByEmployeeName(name).getIsNurse();
+  @GetMapping(value = "/employee/{id}", produces = "application/json")
+  public Boolean verifyIsNurse(@PathVariable Long id) {
+    Employee employee = employeeRepository.findById(id).orElse(null);
+    Boolean isNurse = false;
+    if (employee != null) {
+      isNurse = employee.getIsNurse();
+
+    }
+
+    return isNurse;
   }
 
 }
