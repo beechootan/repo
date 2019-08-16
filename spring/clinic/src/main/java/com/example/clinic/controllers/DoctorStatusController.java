@@ -27,7 +27,6 @@ public class DoctorStatusController {
       status = "Available";
     }
     return status;
->>>>>>> 33bf770a7d964e5b22e977ad0309fa8ae007c24e
   }
 
   @PostMapping(value = "/doctorStatus/{status}")
