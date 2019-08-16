@@ -7,16 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+// import javax.persistence.JoinColumn;
+// import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+// import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+// import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * Appointment
  */
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+// property = "id")
 @Entity(name = "appointment")
 public class Appointment {
   @Id
@@ -44,9 +45,12 @@ public class Appointment {
   @Column(name = "status")
   private String status;
 
-  @ManyToOne
-  @JoinColumn(name = "employeeId")
-  private Employee employee;
+  @Column(name = "employeeId")
+  private Long employeeId;
+
+  // @ManyToOne
+  // @JoinColumn(name = "employeeId")
+  // private Employee employee;
 
   public Long getId() {
     return this.id;
@@ -116,16 +120,20 @@ public class Appointment {
     this.status = status;
   }
 
-  public Employee getEmployee() {
-    return this.employee;
+  // public Employee getEmployee() {
+  // return this.employee;
+  // }
+
+  // public void setEmployee(Employee employee) {
+  // this.employee = employee;
+  // }
+
+  public Long getEmployeeId() {
+    return this.employeeId;
   }
 
-  public void setEmployee(Employee employee) {
-    this.employee = employee;
-  }
-
-  public Appointment orElse(Appointment appointment) {
-    return null;
+  public void setEmployeeId(Long employeeId) {
+    this.employeeId = employeeId;
   }
 
 }
