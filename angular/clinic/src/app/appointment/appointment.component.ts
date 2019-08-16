@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { appointmentService } from '../appointment.service'
 
 @Component({
   selector: 'app-appointment',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent implements OnInit {
+  public appointments:any = [];
 
-  constructor() { }
+  constructor(private appointmentStatus: appointmentService) { }
 
   ngOnInit() {
+    this.appointmentStatus.getAppStatus()
+    .subscribe(data => {
+      debugger
+      this.appointments.push(data)
+    });
+   
   }
 
 }
