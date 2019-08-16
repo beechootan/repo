@@ -10,6 +10,8 @@ import javax.persistence.Id;
 // import javax.persistence.JoinColumn;
 // import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 // import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 // import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -28,9 +30,11 @@ public class Appointment {
   private int queueNum;
 
   @Column(name = "checkInTime")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime checkInTime;
 
   @Column(name = "checkOutTime")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime checkOutTime;
 
   @Column(name = "symptom")
