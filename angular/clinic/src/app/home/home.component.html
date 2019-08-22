@@ -31,7 +31,8 @@
             <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-              <a class="nav-link"  [routerLink]="['appointment']">Manage Appoinments</a>
+              <!-- <a class="nav-link"  [routerLink]="['appointment']">Manage Appoinments</a> -->
+              <a class="nav-link" href="./appointment"> Manage Appointment <span class="sr-only">(current)</span></a>
               <!-- <button class="button" ><a routerLink="/appointment"> Manage Appoinments </a></button> -->
             </li>
           <li class="nav-item dropdown">
@@ -73,17 +74,18 @@
                           </div>
                           <div class="card-body">
                             <h5 class="card-title">Current Queue</h5>
-                            <h2 class="card-text">003</h2>
+                            <h2 class="card-text">{{ totalQueue }} </h2>
                           </div>
                           <div class="card-body">
                               <h5 class="card-title">Your Queue</h5>
-                              <h2 class="card-text">008</h2>
+                              <h2 class="card-text">{{ employeeId }}</h2>
                             </div>
                           <div class="card-footer text-muted">
                               <!-- <a href="#!" class="btn btn-primary mr-3">Reserve</a> -->
                               <!-- <a href="#!" class="btn btn-primary mr-3">Cancel</a> -->
-                              <a class="btn btn-primary btn-lg mr-3" href="#" role="button">Reserve </a>
-                              <a class="btn btn-secondary btn-lg mr-3" href="#" role="button">Cancel</a>
+                              <!-- <a class="btn btn-primary btn-lg mr-3" href="#" role="button">Reserve </a> -->
+                              <button type="button" class="btn btn-secondary btn-lg mr-3" (click)="OnReserve()">Reserve</button>
+                              <!-- <a class="btn btn-secondary btn-lg mr-3" href="#" role="button">Cancel</a> -->
                           </div>
                         </div>
                   </div>

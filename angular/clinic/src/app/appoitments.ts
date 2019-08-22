@@ -16,3 +16,9 @@ export interface appointmentStatus {
     employee: Employee
 
 }
+
+
+export class postData {
+    employeeId: number
+    patientId: number
+}
