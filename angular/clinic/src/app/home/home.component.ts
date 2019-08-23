@@ -17,14 +17,13 @@ import { postData } from '../appoitments';
 })
 export class HomeComponent implements OnInit {
 
-  employeeId: number
-  patientId: string
+  employeeId: string
+  lastUpdBy: string
   public doctors:any = [];
   doctorStatus: string = null;
   empQueueNo: string = null;
   totalQueue: string = null;
-  addDocAppointment: postData;
-  data: string
+  addDocAppointment : postData;
 
   // constructor(private docStatusService: DoctorService) { }
   constructor(
@@ -53,8 +52,8 @@ export class HomeComponent implements OnInit {
       this.totalQueue = data as string
     });
 
-    this.docStatusService.getOwnQueueNo(this.employeeId).subscribe(data => {
-      this.employeeId = parseInt(data)
+    this.docStatusService.getOwnQueueNo(parseInt(this.employeeId)).subscribe(data => {
+      this.empQueueNo = data as string
       
     });
 
@@ -63,16 +62,25 @@ export class HomeComponent implements OnInit {
 
 }
 
+// OnReserve(){
+//   this.patientId = this.employeeId;
+//   this.docStatusService.AddReserve(parseInt(this.employeeId), parseInt(this.patientId)).subscribe(
+//     data => {
+//       console.log(data.body)
+//     })
+//   };
+
 OnReserve(){
   this.addDocAppointment = new postData();
-  this.addDocAppointment.employeeId = this.employeeId;
-  this.addDocAppointment.patientId = this.employeeId;
+  this.addDocAppointment.employeeId = parseInt(this.employeeId);
+  this.addDocAppointment.lastUpdBy = parseInt(this.employeeId);
 
   this.docStatusService.AddReserve(this.addDocAppointment).subscribe(
-    data => console.log('Success', data),
-    error => console.error('Error!',error)
-      )
+    data => {
+            console.log(data)
+          })
     }
 }
+
 
 

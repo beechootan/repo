@@ -66,7 +66,7 @@
                     <h5>Check Out Time</h5>
                   </div>
                   <div class="cell">
-                    <h5>Cancel Appointment</h5>
+                    <h5>Status</h5>
                   </div>
                   &nbsp;
                 </div>
@@ -86,10 +86,8 @@
                       <span *ngIf="appointment.appointment.checkInTime !== null">
                         {{  appointment.appointment.checkInTime }}
                       </span>
-                      <a class="btn btn-secondary" href="./appointment" role="button"
-                        *ngIf="appointment.appointment.checkInTime === null">
-                        Check In Time
-                      </a>
+                      <button type="button" a class="btn btn-secondary" (click)="onCheckIn(appointment.appointment.id)"
+                      *ngIf="appointment.appointment.checkInTime === null">Check In Time</button>
                     </p>
                   </div>
                   <div class="cell">
@@ -97,14 +95,21 @@
                           <span *ngIf="appointment.appointment.checkInTime !== null">
                             {{  appointment.appointment.checkOutTime }}
                           </span>
-                          <a class="btn btn-secondary" href="./appointment" role="button"
-                            *ngIf="appointment.appointment.checkOutTime === null">
-                            Check Out Time
-                          </a>
+                          <button type="button" a class="btn btn-secondary" (click)="onCheckOut(appointment.appointment.id)"
+                          *ngIf="appointment.appointment.checkOutTime === null">Check Out Time</button>
                         </p>
                   </div>
                   <div class="cell">
-                    <p><a class="btn btn-secondary" href="./appointment" role="button">Cancel</a></p>
+                      <p>
+                          <span *ngIf="appointment.appointment.checkOutTime !== null || appointment.appointment.checkInTime !== null">
+                            {{  appointment.appointment.status }}
+                          </span>
+
+                          <button type="button" a class="btn btn-secondary" (click)="onCancel(appointment.appointment.id)"
+                          *ngIf="appointment.appointment.status ==='Open'">Cancel</button>
+                        </p>
+                        <!-- ng-if="key == 'City' || key == 'County'" -->
+                    <!-- <p><a class="btn btn-secondary" href="./appointment" role="button">Cancel</a></p> -->
                   </div>
                 </div>
                 &nbsp;
