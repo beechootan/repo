@@ -241,7 +241,7 @@ public class AppointmentController {
 
     if (updateAppointment != null) {
       if (nurse != null) {
-        updateAppointment.setLastUpdBy(nurse.getBadgeNumber());
+        updateAppointment.setLastUpdBy(nurse.getId());
       }
 
       if (type.equals("checkIn")) {
@@ -275,15 +275,17 @@ public class AppointmentController {
 
   // }
 
-  @PostMapping(value = "/appointments/{nurseId}/{employeeId}/cancel")
-  public void updateCancelStatus(@PathVariable("employeeId") Long employeeId, @PathVariable("appointmentId") Long id) {
-    Appointment updateCancelAppointment = appointmentRepository.findById(id).orElse(null);
-    Employee nurse = employeeRepository.findById(employeeId).orElse(null);
-    updateCancelAppointment.setLastUpdBy(nurse.getBadgeNumber());
+  @PostMapping(value = "/appointments/cancel")
+  public void updateCancelStatus(@RequestBody Appointment appointment) {
+    Appointment updateCancelAppointment = appointmentRepository.findById(appointment.getId()).orElse(null);
+    Employee nurse = employeeRepository.findById(appointment.getLastUpdBy()).orElse(null);
+    updateCancelAppointment.setLastUpdBy(nurse.getId());
     updateCancelAppointment.setStatus("Cancel");
-
-    appointmentRepository.save(updateCancelAppointment);
-
+    if (updateCancelAppointment != null) {
+      if (nurse.getIsNurse() || updateCancelAppointment.getEmployeeId().equals(appointment.getLastUpdBy())) {
+        appointmentRepository.save(updateCancelAppointment);
+      }
+    }
   }
 
   @PostMapping(value = "/appointments/closeQueue")
