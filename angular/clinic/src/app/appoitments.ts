@@ -19,6 +19,12 @@ export interface appointmentStatus {
 
 
 export class postData {
+    
+    lastUpdBy: number
     employeeId: number
-    patientId: number
+}
+
+export class checkInData {
+    appointmentId: number
+    nurseID: number
 }

@@ -11,16 +11,18 @@ import { postData } from './appoitments';
 })
 export class DoctorstatusService {
 
-
-  private _url : string ='http://localhost:8080/api/doctorStatus';
-  private totalQueueUrl : string ='http://localhost:8080/api/appointments/currentQueue';
-  private baseUrl : string ='http://localhost:8080/api/appointments';
-  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
+
+
+  private _url : string ='http://localhost:8080/api/doctorStatus';
+  private totalQueueUrl : string ='http://localhost:8080/api/appointments/currentQueue';
+  private baseUrl : string ='http://localhost:8080/api/appointments';
+  private baseUrl2 : string ='http://localhost:8080/api/appointments/addAppointment';
+  
   constructor(private http: HttpClient) { 
   
   }
@@ -49,11 +51,27 @@ export class DoctorstatusService {
     return this.http.get(`${this.baseUrl}/${employeeId}/today`, {responseType: "text"} );
   }
 
+  // AddReserve(employeeId: number, patientId: number){
+    
+  //   return this.http.post(`${this.baseUrl}/${employeeId}/${patientId}/addAppointment`, {},{ responseType:'text', observe: 'response' } );
+    
+
+// }
+
+
   AddReserve(addAppoint: postData){
-    // const url = `${this.baseUrl}/${employeeId}/${patientId}/addAppointment`
-    // return this.http.post(`${this.baseUrl}/${employeeId}/${patientId}/addAppointment` );
-    // return this.http.post(this.baseUrl,employeeId,patientId );
-    // return this.http.post(url,employeeId,patientId,httpOption)
-      return this.http.post(this.baseUrl,addAppoint,this.httpOptions);
-}
+   
+  // const url = `${this.baseUrl}/${employeeId}/${patientId}/addAppointment`
+  // return this.http.post(`${this.baseUrl}/${employeeId}/${patientId}/addAppointment` );
+  // return this.http.post(this.baseUrl,employeeId,patientId );
+  // return this.http.post(url,employeeId,patientId,httpOption)
+    return this.http.post(this.baseUrl2, addAppoint, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      responseType: "text"
+    });
+
+
+  }
 }
