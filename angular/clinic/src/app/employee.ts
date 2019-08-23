@@ -6,5 +6,5 @@ export interface Employee {
     email: String
     password: String
 
-}
 
+}

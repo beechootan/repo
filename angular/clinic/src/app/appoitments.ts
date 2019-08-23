@@ -24,7 +24,7 @@ export class postData {
     employeeId: number
 }
 
-export class checkInData {
-    appointmentId: number
-    nurseID: number
+export class toCancel {
+    lastUpdBy: number
+    id: number
 }

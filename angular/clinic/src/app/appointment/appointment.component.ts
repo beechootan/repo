@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { appointmentService } from '../appointment.service'
 import { ActivatedRoute } from '@angular/router';
+import { toCancel } from '../appoitments';
 
 @Component({
   selector: 'app-appointment',
@@ -12,6 +13,7 @@ export class AppointmentComponent implements OnInit {
   employeeId: string
   nurseId : number
   appointmentId: number
+  addCancelAppoint : toCancel;
 
   constructor(
     private appointmentStatus: appointmentService,
@@ -51,6 +53,21 @@ export class AppointmentComponent implements OnInit {
             });
           })
         };
+
+        onCancel(id){
+          this.addCancelAppoint = new toCancel();
+          this.addCancelAppoint.id = id;
+          this.addCancelAppoint.lastUpdBy = parseInt(this.employeeId);
+          this.appointmentStatus.AddCancel(this.addCancelAppoint).subscribe(
+            data => {
+              
+              console.log(data)
+              this.appointmentStatus.getAppStatus()
+              .subscribe(data => {
+                this.appointments = data
+              });
+            })
+            }
 
   }
 
