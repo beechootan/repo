@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 // import { DoctorService } from '../doctor.service'
 import { DoctorstatusService } from '../doctorstatus.service';
 import { ActivatedRoute } from '@angular/router';
-import { postData } from '../appoitments';
 
 
 // import { DocStatusService } from '../doctorstatus.service'
@@ -17,14 +16,12 @@ import { postData } from '../appoitments';
 })
 export class HomeComponent implements OnInit {
 
-  employeeId: number
+  employeeId: string
   patientId: string
   public doctors:any = [];
   doctorStatus: string = null;
   empQueueNo: string = null;
   totalQueue: string = null;
-  addDocAppointment: postData;
-  data: string
 
   // constructor(private docStatusService: DoctorService) { }
   constructor(
@@ -53,8 +50,8 @@ export class HomeComponent implements OnInit {
       this.totalQueue = data as string
     });
 
-    this.docStatusService.getOwnQueueNo(this.employeeId).subscribe(data => {
-      this.employeeId 
+    this.docStatusService.getOwnQueueNo(parseInt(this.employeeId)).subscribe(data => {
+      this.empQueueNo = data as string
       
     });
 
@@ -64,15 +61,14 @@ export class HomeComponent implements OnInit {
 }
 
 OnReserve(){
-  this.addDocAppointment = new postData();
-  this.addDocAppointment.employeeId = this.employeeId;
-  this.addDocAppointment.patientId = this.employeeId;
-
-  this.docStatusService.AddReserve(this.addDocAppointment).subscribe(
-    data => console.log('Success', data),
-    error => console.error('Error!',error)
-      )
+  this.patientId = this.employeeId;
+  this.docStatusService.AddReserve(parseInt(this.employeeId), parseInt(this.patientId)).subscribe(
+    data => {
+      console.log(data.body)
     }
+  )
+    
+  };
 }
 
 

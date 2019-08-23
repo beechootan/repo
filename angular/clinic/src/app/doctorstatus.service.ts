@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http' ;
+import { HttpClient } from '@angular/common/http' ;
 import { checkDoctorStatus } from './doctorstatus';
-import { postData } from './appoitments';
 
 
 
@@ -16,11 +15,6 @@ export class DoctorstatusService {
   private totalQueueUrl : string ='http://localhost:8080/api/appointments/totalQueue';
   private baseUrl : string ='http://localhost:8080/api/appointments';
   
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  }
   constructor(private http: HttpClient) { 
   
   }
@@ -49,11 +43,10 @@ export class DoctorstatusService {
     return this.http.get(`${this.baseUrl}/${employeeId}/today`, {responseType: "text"} );
   }
 
-  AddReserve(addAppoint: postData){
-    // const url = `${this.baseUrl}/${employeeId}/${patientId}/addAppointment`
-    // return this.http.post(`${this.baseUrl}/${employeeId}/${patientId}/addAppointment` );
-    // return this.http.post(this.baseUrl,employeeId,patientId );
-    // return this.http.post(url,employeeId,patientId,httpOption)
-      return this.http.post(this.baseUrl,addAppoint,this.httpOptions);
+  AddReserve(employeeId: number, patientId: number){
+    
+    return this.http.post(`${this.baseUrl}/${employeeId}/${patientId}/addAppointment`, {},{ responseType:'text', observe: 'response' } );
+    
+
 }
 }
