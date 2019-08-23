@@ -40,6 +40,12 @@ public class EmployeeController {
     return isNurse;
   }
 
+  @GetMapping(value = "/employee/{id}/isNurse", produces = "application/json")
+  public Employee verifyIfIsNurse(@PathVariable Long id) {
+    Employee employee = employeeRepository.findById(id).orElse(null);
+    return employee;
+  }
+
   @GetMapping(value = "/login", produces = "application/json")
   public Long verifyLogin(@RequestBody Employee employee) {
     Long id = 0L;
