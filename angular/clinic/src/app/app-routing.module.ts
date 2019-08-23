@@ -7,10 +7,10 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'appointment', component: AppointmentComponent },
-  // { path: '', component: HomeComponent },
-  // { path: 'login',component: LoginComponent }
-  { path: 'home', component: HomeComponent },
-  { path: '',component: LoginComponent }
+  { path: 'home/:employeeId', component: HomeComponent },
+  { path: 'login',component: LoginComponent }
+  // { path: 'home', component: HomeComponent },
+  // { path: '',component: LoginComponent }
 ]
 
 @NgModule({

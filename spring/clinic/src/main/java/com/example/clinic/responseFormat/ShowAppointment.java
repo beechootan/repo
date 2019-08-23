@@ -1,33 +1,33 @@
 package com.example.clinic.responseFormat;
 
-import com.example.clinic.entities.AllAppointment;
-import com.example.clinic.entities.EmployeeOnly;
+import com.example.clinic.entities.Appointment;
+import com.example.clinic.entities.Employee;
 
 /**
  * ShowAppointment
  */
 public class ShowAppointment {
-  public AllAppointment appointment;
-  public EmployeeOnly employee;
+  public Appointment appointment;
+  public Employee employee;
 
-  public ShowAppointment(AllAppointment appointment, EmployeeOnly employee) {
+  public ShowAppointment(Appointment appointment, Employee employee) {
     this.appointment = appointment;
     this.employee = employee;
   }
 
-  public AllAppointment getAppointment() {
+  public Appointment getAppointment() {
     return this.appointment;
   }
 
-  public void setAppointment(AllAppointment appointment) {
+  public void setAppointment(Appointment appointment) {
     this.appointment = appointment;
   }
 
-  public EmployeeOnly getEmployee() {
+  public Employee getEmployee() {
     return this.employee;
   }
 
-  public void setEmployee(EmployeeOnly employee) {
+  public void setEmployee(Employee employee) {
     this.employee = employee;
   }
 }

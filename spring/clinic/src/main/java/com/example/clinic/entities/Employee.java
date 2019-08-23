@@ -1,23 +1,24 @@
 package com.example.clinic.entities;
 
-import java.util.Set;
+// import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
+// import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+// import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+// import com.fasterxml.jackson.annotation.JsonManagedReference;
+// import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.Id;
 
 /**
  * Employee
  */
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+// property = "id")
 @Entity(name = "employee")
 public class Employee {
 
@@ -40,9 +41,9 @@ public class Employee {
   @Column(name = "isNurse")
   private boolean isNurse;
 
-  @JsonManagedReference
-  @OneToMany(mappedBy = "employee")
-  private Set<Appointment> appointments;
+  // @JsonManagedReference
+  // @OneToMany(mappedBy = "employee")
+  // private Set<Appointment> appointments;
 
   public Long getId() {
     return this.id;
@@ -96,12 +97,12 @@ public class Employee {
     this.password = password;
   }
 
-  public Set<Appointment> getAppointments() {
-    return this.appointments;
-  }
+  // public Set<Appointment> getAppointments() {
+  // return this.appointments;
+  // }
 
-  public void setAppointments(Set<Appointment> appointments) {
-    this.appointments = appointments;
-  }
+  // public void setAppointments(Set<Appointment> appointments) {
+  // this.appointments = appointments;
+  // }
 
 }
