@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   empQueueNo: string = null;
   totalQueue: string = null;
   addDocAppointment : postData;
+  isNurse: string
 
   // constructor(private docStatusService: DoctorService) { }
   constructor(
@@ -57,8 +58,7 @@ export class HomeComponent implements OnInit {
       
     });
 
-
-
+  
 
 }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http' ;
-import { appointmentStatus, checkInData } from './appoitments';
+import { HttpClient, HttpHeaders } from '@angular/common/http' ;
+import { appointmentStatus, toCancel } from './appoitments';
 
 
 @Injectable({
@@ -13,7 +13,8 @@ import { appointmentStatus, checkInData } from './appoitments';
 export class appointmentService {
 
     private _url : string ='http://localhost:8080/api/appointments';
-    private baseUrl : string = 'http://localhost:8080/api/appointments'
+    private baseUrl : string = 'http://localhost:8080/api/appointments';
+    private baseUrl2 : string = 'http://localhost:8080/api/appointments/cancel';
 
     constructor(private http: HttpClient) { }
 
@@ -35,12 +36,13 @@ export class appointmentService {
            }
       // checkInTime(checkInTime: checkInData){
    
-      //     return this.http.post(this.baseUrl2, addAppoint, {
-      //       headers: new HttpHeaders({
-      //         'Content-Type': 'application/json',
-      //       }),
-      //       responseType: "text"
-      //     });
+        AddCancel(forCancel: toCancel){
+          return this.http.post(this.baseUrl2, forCancel, {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+            }),
+            responseType: "text"
+          });
       
-      
+          }
         }

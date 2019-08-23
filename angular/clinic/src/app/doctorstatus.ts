@@ -3,3 +3,7 @@ export interface checkDoctorStatus {
     status: boolean
 
 }
+
+export class checkNurse {
+    id: number
+}

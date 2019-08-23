@@ -87,7 +87,7 @@
                         {{  appointment.appointment.checkInTime }}
                       </span>
                       <button type="button" a class="btn btn-secondary" (click)="onCheckIn(appointment.appointment.id)"
-                      *ngIf="appointment.appointment.checkInTime === null">Check In Time</button>
+                      *ngIf="appointment.appointment.status === 'Open'">Check In Time</button>
                     </p>
                   </div>
                   <div class="cell">
@@ -96,12 +96,12 @@
                             {{  appointment.appointment.checkOutTime }}
                           </span>
                           <button type="button" a class="btn btn-secondary" (click)="onCheckOut(appointment.appointment.id)"
-                          *ngIf="appointment.appointment.checkOutTime === null">Check Out Time</button>
+                          *ngIf="(appointment.appointment.status === 'Open' && appointment.appointment.checkInTime !== null) || appointment.appointment.status === 'In Progress'">Check Out Time</button>
                         </p>
                   </div>
                   <div class="cell">
                       <p>
-                          <span *ngIf="appointment.appointment.checkOutTime !== null || appointment.appointment.checkInTime !== null">
+                          <span *ngIf="appointment.appointment.status === 'Completed' || appointment.appointment.status === 'Cancel' || appointment.appointment.status === 'In Progress'">
                             {{  appointment.appointment.status }}
                           </span>
 
