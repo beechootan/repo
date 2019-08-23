@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="./home"> Home </a>
+          <a class="nav-link" href="home/:employeeId"> Home </a>
         </li>
         <li class="nav-item">
           <!-- <a class="nav-link"  [routerLink]="['appointment']">Manage Appoinments</a> -->
@@ -86,7 +86,7 @@
                       <span *ngIf="appointment.appointment.checkInTime !== null">
                         {{  appointment.appointment.checkInTime }}
                       </span>
-                      <a class="btn btn-secondary" href="#" role="button"
+                      <a class="btn btn-secondary" href="./appointment" role="button"
                         *ngIf="appointment.appointment.checkInTime === null">
                         Check In Time
                       </a>
@@ -97,14 +97,14 @@
                           <span *ngIf="appointment.appointment.checkInTime !== null">
                             {{  appointment.appointment.checkOutTime }}
                           </span>
-                          <a class="btn btn-secondary" href="#" role="button"
+                          <a class="btn btn-secondary" href="./appointment" role="button"
                             *ngIf="appointment.appointment.checkOutTime === null">
                             Check Out Time
                           </a>
                         </p>
                   </div>
                   <div class="cell">
-                    <p><a class="btn btn-secondary" href="#" role="button">Cancel</a></p>
+                    <p><a class="btn btn-secondary" href="./appointment" role="button">Cancel</a></p>
                   </div>
                 </div>
                 &nbsp;
