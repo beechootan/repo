@@ -17,7 +17,7 @@ import { postData } from '../appoitments';
 })
 export class HomeComponent implements OnInit {
 
-  employeeId: string
+  employeeId: number
   lastUpdBy: string
   public doctors:any = [];
   doctorStatus: string = null;
@@ -48,19 +48,22 @@ export class HomeComponent implements OnInit {
       this.doctorStatus = data as string
     });
      
+    
     this.docStatusService.getCurrentQueuenumber()
     .subscribe(data => {
       this.totalQueue = data as string
     });
 
-    this.docStatusService.getOwnQueueNo(parseInt(this.employeeId)).subscribe(data => {
+    this.docStatusService.getOwnQueueNo(this.employeeId).subscribe(data => {
       this.empQueueNo = data as string
       
     });
 
-  
+  this.docStatusService.getNurse(this.employeeId).subscribe(data => {
+    this.isNurse = data as string
 
-}
+});
+  }
 
 // OnReserve(){
 //   this.patientId = this.employeeId;
@@ -72,8 +75,8 @@ export class HomeComponent implements OnInit {
 
 OnReserve(){
   this.addDocAppointment = new postData();
-  this.addDocAppointment.employeeId = parseInt(this.employeeId);
-  this.addDocAppointment.lastUpdBy = parseInt(this.employeeId);
+  this.addDocAppointment.employeeId = this.employeeId;
+  this.addDocAppointment.lastUpdBy = this.employeeId;
 
   this.docStatusService.AddReserve(this.addDocAppointment).subscribe(
     data => {

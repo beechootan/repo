@@ -22,6 +22,7 @@ export class DoctorstatusService {
   private totalQueueUrl : string ='http://localhost:8080/api/appointments/currentQueue';
   private baseUrl : string ='http://localhost:8080/api/appointments';
   private baseUrl2 : string ='http://localhost:8080/api/appointments/addAppointment';
+  private cNurse: string ='http://localhost:8080/api/employee'
   
   constructor(private http: HttpClient) { 
   
@@ -49,6 +50,10 @@ export class DoctorstatusService {
 
   getOwnQueueNo(employeeId: number){
     return this.http.get(`${this.baseUrl}/${employeeId}/today`, {responseType: "text"} );
+  }
+
+  getNurse(employeeId: number){
+    return this.http.get(`${this.cNurse}/${employeeId}`, {responseType: "text"} );
   }
 
   // AddReserve(employeeId: number, patientId: number){
