@@ -81,6 +81,10 @@ OnReserve(){
   this.docStatusService.AddReserve(this.addDocAppointment).subscribe(
     data => {
             console.log(data)
+            this.docStatusService.getOwnQueueNo(this.employeeId).subscribe(data => {
+              this.empQueueNo = data as string
+              
+            });
           })
     }
 }
