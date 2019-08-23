@@ -241,7 +241,7 @@ public class AppointmentController {
 
     if (updateAppointment != null) {
       if (nurse != null) {
-        updateAppointment.setLastUpdBy(nurse.getBadgeNumber());
+        updateAppointment.setLastUpdBy(nurse.getId());
       }
 
       if (type.equals("checkIn")) {
