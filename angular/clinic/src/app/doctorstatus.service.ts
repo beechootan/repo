@@ -13,7 +13,7 @@ export class DoctorstatusService {
 
 
   private _url : string ='http://localhost:8080/api/doctorStatus';
-  private totalQueueUrl : string ='http://localhost:8080/api/appointments/totalQueue';
+  private totalQueueUrl : string ='http://localhost:8080/api/appointments/currentQueue';
   private baseUrl : string ='http://localhost:8080/api/appointments';
   
   httpOptions = {
