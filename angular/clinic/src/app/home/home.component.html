@@ -28,14 +28,13 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="home/7"> Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
               <!-- <a class="nav-link"  [routerLink]="['appointment']">Manage Appoinments</a> -->
-              <a class="nav-link" href="./appointment"> Manage Appointment <span class="sr-only">(current)</span></a>
-              <!-- <button class="button" ><a routerLink="/appointment"> Manage Appoinments </a></button> -->
+              <a class="nav-link" href="./appointment"> Manage Appoinments</a>
             </li>
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">Manage</a>
               <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -43,11 +42,10 @@
                 <a class="dropdown-item" href="#">Doctor Availibility</a>
                 <a class="dropdown-item" href="https://www.aspmedic.com/">About ASP</a>
               </div>
-            </li>
+            </li> -->
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Badge Id" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <a class="btn btn-secondary btn-sm" style="margin-right: 5px" href="./">Log Out</a>
         </form>
       </div>
     </nav>
@@ -60,12 +58,12 @@
               <div class="row">
                   <div class="col-md-5" style="margin-top:20px; padding: 20px;">
                       <!-- <div class="col-md-5" style="margin-top:20px; padding: 5px;border:2px solid red;"> -->
-                      <h5 class="display-3" style="margin-left:30px; margin-bottom:20px">Hello , User</h5>
+                      <h5 class="display-3" style="margin-left:30px; margin-bottom:20px">Hello , Kevin </h5>
                       <h4 style="margin-left:30px;">Welcome to Dell In-House Clinic Appointment System</h4>
                       <h4 style="margin-left:30px;">You can now reserve your queue number online.</h4>
                       <p></p>
                       <p style="margin-left:30px;">** Reservation is only available on the actual day</p>
-                      <p style="margin-left:30px;"><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+                      <p style="margin-left:30px;"><a class="btn btn-primary btn-lg" href="home/7" role="button">Learn more &raquo;</a></p>
                   </div>
                   <div class="col-md-5" style="margin-top:20px; padding: 10px;">
                       <div class="card text-center">
@@ -84,7 +82,7 @@
                               <!-- <a href="#!" class="btn btn-primary mr-3">Reserve</a> -->
                               <!-- <a href="#!" class="btn btn-primary mr-3">Cancel</a> -->
                               <!-- <a class="btn btn-primary btn-lg mr-3" href="#" role="button">Reserve </a> -->
-                              <button type="button" class="btn btn-secondary btn-lg mr-3" (click)="OnReserve()">Reserve</button>
+                              <button type="button" class="btn btn-primary btn-lg mr-3" (click)="OnReserve()">Reserve</button>
                               <!-- <a class="btn btn-secondary btn-lg mr-3" href="#" role="button">Cancel</a> -->
                           </div>
                         </div>
@@ -103,7 +101,7 @@
             <p>Wednesday: 09:00 AM - 12:00 PM</p>
             <p>Thursday : 02:00 PM - 04:00 PM</p>
             <p>Friday   : Off</p>
-            <p><a class="btn btn-secondary" href="#" role="button">Update &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="home/7" role="button">Update &raquo;</a></p>
           </div>
           <div class="col-md-4">
             <h2>Doctor Availibility</h2>
@@ -118,7 +116,7 @@
             <p>CyberJaya : 04-633 2444</p>
             <p>APCC2     : 04-633 2444 </p>
             <p>or contact us via email </p>
-            <p><a class="btn btn-secondary" href="#" role="button">Email &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="home/7" role="button">Email &raquo;</a></p>
           </div>
         </div>
 

@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.docStatusService.getOwnQueueNo(this.employeeId).subscribe(data => {
-      this.employeeId 
+      this.employeeId = parseInt(data)
       
     });
 
