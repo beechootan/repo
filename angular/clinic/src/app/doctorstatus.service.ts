@@ -10,7 +10,7 @@ import { checkDoctorStatus } from './doctorstatus';
 })
 export class DoctorstatusService {
 
-  // private doctor: BehaviorSubject<any> = new BehaviorSubject([])
+
   private _url : string ='http://localhost:8080/api/doctorStatus';
 
   constructor(private http: HttpClient) { 
