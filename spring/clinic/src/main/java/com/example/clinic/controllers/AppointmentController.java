@@ -5,19 +5,16 @@ import java.util.List;
 import java.time.LocalDateTime;
 
 import com.example.clinic.entities.Appointment;
-//import com.example.clinic.entities.AllAppointment;
 import com.example.clinic.entities.Employee;
-//import com.example.clinic.entities.EmployeeOnly;
 import com.example.clinic.repositories.AppointmentRepository;
-// import com.example.clinic.repositories.AllAppointmentRepository;
 import com.example.clinic.repositories.EmployeeRepository;
-//import com.example.clinic.repositories.EmployeeOnlyRepository;
 import com.example.clinic.responseFormat.ShowAppointment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -138,12 +135,67 @@ public class AppointmentController {
   // return message;
   // }
 
-  @PostMapping(value = "/appointments/{employeeId}/{patientId}/addAppointment")
-  public String addAppointment(@PathVariable("employeeId") Long id, @PathVariable("patientId") Long patientId) {
+  // @PostMapping(value = "/appointments/{employeeId}/{patientId}/addAppointment")
+  // public String addAppointment(@PathVariable("employeeId") Long id,
+  // @PathVariable("patientId") Long patientId) {
+  // String message = "";
+  // Employee employee = employeeRepository.findById(id).orElse(null);
+  // Employee patient = employeeRepository.findById(patientId).orElse(null);
+  // Appointment latestAppointment =
+  // appointmentRepository.findCurrentAppointmentById(patient.getId());
+  // Integer maxQueue = displayTotalAppointments();
+  // if (maxQueue != null) {
+  // maxQueue = maxQueue + 1;
+  // } else {
+  // maxQueue = 1;
+  // }
+  // ;
+
+  // if (latestAppointment != null) {
+  // message = "Your queue number is " + latestAppointment.getQueueNum();
+  // } else {
+  // if (employee != null) {
+  // if (employee.getIsNurse() || (employee.getId().equals(patient.getId()))) {
+  // Appointment newAppointment = new Appointment();
+  // newAppointment.setQueueNum(maxQueue);
+  // newAppointment.setEmployeeId(patient.getId());
+  // // newAppointment.setSymptom("");
+  // newAppointment.setStatus("Open");
+  // newAppointment.setIsToday(true);
+  // newAppointment.setLastUpdBy(employee.getBadgeNumber());
+  // appointmentRepository.save(newAppointment);
+  // latestAppointment = newAppointment;
+  // message = "Appointment made. Your queue number is " +
+  // latestAppointment.getQueueNum();
+  // } else {
+  // message = "Only nurse has the rights to make appointment for other. Kindly
+  // contact clinic. ";
+  // }
+  // ;
+
+  // } else {
+  // message = "Not able to locate your employee ID. Please relogin.";
+  // }
+  // ;
+  // }
+
+  // ;
+
+  // return message;
+  // }
+
+  @PostMapping(value = "/appointments/addAppointment")
+  public String addAppointment(@RequestBody Appointment appointment) {
     String message = "";
-    Employee employee = employeeRepository.findById(id).orElse(null);
-    Employee patient = employeeRepository.findById(patientId).orElse(null);
-    Appointment latestAppointment = appointmentRepository.findCurrentAppointmentById(patient.getId());
+    Appointment latestAppointment = new Appointment();
+    Employee employee = employeeRepository.findById(appointment.getLastUpdBy()).orElse(null);
+    Employee patient = employeeRepository.findById(appointment.getEmployeeId()).orElse(null);
+    if (patient != null) {
+      latestAppointment = appointmentRepository.findCurrentAppointmentById(patient.getId());
+    } else {
+      latestAppointment = null;
+    }
+    ;
     Integer maxQueue = displayTotalAppointments();
     if (maxQueue != null) {
       maxQueue = maxQueue + 1;
@@ -151,11 +203,11 @@ public class AppointmentController {
       maxQueue = 1;
     }
     ;
-
+    System.out.println("");
     if (latestAppointment != null) {
       message = "Your queue number is " + latestAppointment.getQueueNum();
     } else {
-      if (employee != null) {
+      if (patient != null) {
         if (employee.getIsNurse() || (employee.getId().equals(patient.getId()))) {
           Appointment newAppointment = new Appointment();
           newAppointment.setQueueNum(maxQueue);
@@ -163,19 +215,16 @@ public class AppointmentController {
           // newAppointment.setSymptom("");
           newAppointment.setStatus("Open");
           newAppointment.setIsToday(true);
-          newAppointment.setLastUpdBy(employee.getBadgeNumber());
+          newAppointment.setLastUpdBy(employee.getId());
           appointmentRepository.save(newAppointment);
           latestAppointment = newAppointment;
           message = "Appointment made. Your queue number is " + latestAppointment.getQueueNum();
         } else {
           message = "Only nurse has the rights to make appointment for other. Kindly contact clinic. ";
         }
-        ;
-
       } else {
         message = "Not able to locate your employee ID. Please relogin.";
       }
-      ;
     }
 
     ;
@@ -213,7 +262,20 @@ public class AppointmentController {
 
   }
 
-  @PostMapping(value = "/appointments/cancel/{employeeId}/{appointmentId}")
+  // @PostMapping(value = "/appointments/cancel/{employeeId}/{appointmentId}")
+  // public void updateCancelStatus(@PathVariable("employeeId") Long employeeId,
+  // @PathVariable("appointmentId") Long id) {
+  // Appointment updateCancelAppointment =
+  // appointmentRepository.findById(id).orElse(null);
+  // Employee nurse = employeeRepository.findById(employeeId).orElse(null);
+  // updateCancelAppointment.setLastUpdBy(nurse.getBadgeNumber());
+  // updateCancelAppointment.setStatus("Cancel");
+
+  // appointmentRepository.save(updateCancelAppointment);
+
+  // }
+
+  @PostMapping(value = "/appointments/{nurseId}/{employeeId}/cancel")
   public void updateCancelStatus(@PathVariable("employeeId") Long employeeId, @PathVariable("appointmentId") Long id) {
     Appointment updateCancelAppointment = appointmentRepository.findById(id).orElse(null);
     Employee nurse = employeeRepository.findById(employeeId).orElse(null);
