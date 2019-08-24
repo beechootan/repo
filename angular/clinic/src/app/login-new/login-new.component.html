@@ -1,0 +1,46 @@
+  <div class="row">
+
+      <div class="col-md-6 col-md-offset-2">
+        <h1>Login </h1>
+        <!-- <form [formGroup]="loginForm" (ngSubmit)="login()"> -->
+        <form #loginForm="ngForm" class="col s12 white" (ngSubmit)="OnSubmit(UserName,Password)">
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <!-- <input type="email" class="form-control" [(ngModel)]="user.email" formControlName="email" id="email"> -->
+            <input name="name" [(ngModel)]="UserName" required>
+            <!-- <input type="text" [formControl]="email"/> -->
+            <!-- <input type="text"  placeholder="Email"  > -->
+            <div *ngIf="submitted && loginForm.controls.email.errors" class="error">
+              <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input name="password" [(ngModel)]="Password" required>
+            <!-- <input type="text" [formControl]="password"/> -->
+            <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+              <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
+            </div>
+          </div>
+          <button class="btn btn-default">Login</button>
+          <div *ngIf="invalidLogin" class="error">
+            <div>Invalid credentials.</div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+ <!-- <ion-content padding>
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input #password formControlName="password" type="password"></ion-input>
+      </ion-item>
+  </form>
+</ion-content> -->

@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   userService: any;
   isLoginError: boolean;
   router: any;
+  employeeId: string;
 
   constructor() { }
 
@@ -30,10 +31,12 @@ export class LoginComponent implements OnInit {
 //  }
 
  OnSubmit(inputEmail,inputPassword){
-  this.userService.userAuthentication(inputEmail,inputPassword).subscribe((data : any)=>{
-   localStorage.setItem('userToken',data.access_token);
+   console.log("TESTING 123")
+  this.userService.getUser(inputEmail,inputPassword).subscribe((data : any)=>{
+  //  localStorage.setItem('userToken',data.access_token);
   //  this.router.navigate(['/home']);
-  this.router.navigate(["./home"]);
+  this.employeeId=data as string;
+  this.router.navigate(["./home/{{ employeeId }}"]);
  },
  (err : HttpErrorResponse)=>{
    this.isLoginError = true;
